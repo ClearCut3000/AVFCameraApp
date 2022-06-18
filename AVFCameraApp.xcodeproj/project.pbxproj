@@ -13,6 +13,11 @@
 		36641289285E7A890059C347 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36641287285E7A890059C347 /* Main.storyboard */; };
 		3664128B285E7A900059C347 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3664128A285E7A900059C347 /* Assets.xcassets */; };
 		3664128E285E7A900059C347 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3664128C285E7A900059C347 /* LaunchScreen.storyboard */; };
+		3664129A285E7B5B0059C347 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36641298285E7B5B0059C347 /* LaunchViewController.swift */; };
+		3664129B285E7B5B0059C347 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36641299285E7B5B0059C347 /* LaunchViewController.xib */; };
+		366412A0285E7D460059C347 /* RequestCameraAuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3664129F285E7D460059C347 /* RequestCameraAuthorizationView.swift */; };
+		366412A2285E7D640059C347 /* RequestCameraAuthorizationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412A1285E7D640059C347 /* RequestCameraAuthorizationView.xib */; };
+		366412A7285E86F90059C347 /* RequestCameraAuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412A6285E86F90059C347 /* RequestCameraAuthorizationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		3664128A285E7A900059C347 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3664128D285E7A900059C347 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3664128F285E7A900059C347 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36641298285E7B5B0059C347 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		36641299285E7B5B0059C347 /* LaunchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
+		3664129F285E7D460059C347 /* RequestCameraAuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCameraAuthorizationView.swift; sourceTree = "<group>"; };
+		366412A1285E7D640059C347 /* RequestCameraAuthorizationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestCameraAuthorizationView.xib; sourceTree = "<group>"; };
+		366412A6285E86F90059C347 /* RequestCameraAuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCameraAuthorizationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +66,92 @@
 		36641280285E7A890059C347 /* AVFCameraApp */ = {
 			isa = PBXGroup;
 			children = (
+				366412A3285E86AD0059C347 /* Controllers */,
+				3664129C285E7CC60059C347 /* View's */,
+				36641295285E7B090059C347 /* ViewControllers */,
 				36641281285E7A890059C347 /* AppDelegate.swift */,
 				36641283285E7A890059C347 /* SceneDelegate.swift */,
-				36641285285E7A890059C347 /* ViewController.swift */,
 				36641287285E7A890059C347 /* Main.storyboard */,
 				3664128A285E7A900059C347 /* Assets.xcassets */,
 				3664128C285E7A900059C347 /* LaunchScreen.storyboard */,
 				3664128F285E7A900059C347 /* Info.plist */,
 			);
 			path = AVFCameraApp;
+			sourceTree = "<group>";
+		};
+		36641295285E7B090059C347 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				36641297285E7B2B0059C347 /* Launch */,
+				36641296285E7B210059C347 /* ViewController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		36641296285E7B210059C347 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				36641285285E7A890059C347 /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		36641297285E7B2B0059C347 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				36641298285E7B5B0059C347 /* LaunchViewController.swift */,
+				36641299285E7B5B0059C347 /* LaunchViewController.xib */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		3664129C285E7CC60059C347 /* View's */ = {
+			isa = PBXGroup;
+			children = (
+				3664129D285E7CCE0059C347 /* RequestAuthorization */,
+			);
+			path = "View's";
+			sourceTree = "<group>";
+		};
+		3664129D285E7CCE0059C347 /* RequestAuthorization */ = {
+			isa = PBXGroup;
+			children = (
+				3664129E285E7D000059C347 /* Camera */,
+			);
+			path = RequestAuthorization;
+			sourceTree = "<group>";
+		};
+		3664129E285E7D000059C347 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				3664129F285E7D460059C347 /* RequestCameraAuthorizationView.swift */,
+				366412A1285E7D640059C347 /* RequestCameraAuthorizationView.xib */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		366412A3285E86AD0059C347 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				366412A4285E86BC0059C347 /* RequestAuthorization */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		366412A4285E86BC0059C347 /* RequestAuthorization */ = {
+			isa = PBXGroup;
+			children = (
+				366412A5285E86D50059C347 /* Camera */,
+			);
+			path = RequestAuthorization;
+			sourceTree = "<group>";
+		};
+		366412A5285E86D50059C347 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				366412A6285E86F90059C347 /* RequestCameraAuthorizationController.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +212,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				366412A2285E7D640059C347 /* RequestCameraAuthorizationView.xib in Resources */,
 				3664128E285E7A900059C347 /* LaunchScreen.storyboard in Resources */,
 				3664128B285E7A900059C347 /* Assets.xcassets in Resources */,
 				36641289285E7A890059C347 /* Main.storyboard in Resources */,
+				3664129B285E7B5B0059C347 /* LaunchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +230,9 @@
 				36641286285E7A890059C347 /* ViewController.swift in Sources */,
 				36641282285E7A890059C347 /* AppDelegate.swift in Sources */,
 				36641284285E7A890059C347 /* SceneDelegate.swift in Sources */,
+				366412A0285E7D460059C347 /* RequestCameraAuthorizationView.swift in Sources */,
+				366412A7285E86F90059C347 /* RequestCameraAuthorizationController.swift in Sources */,
+				3664129A285E7B5B0059C347 /* LaunchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +384,7 @@
 				DEVELOPMENT_TEAM = CJ7JF497NG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AVFCameraApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please grant access to the camera to continue using the application by clicking the Allow button.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -320,6 +413,7 @@
 				DEVELOPMENT_TEAM = CJ7JF497NG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AVFCameraApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please grant access to the camera to continue using the application by clicking the Allow button.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

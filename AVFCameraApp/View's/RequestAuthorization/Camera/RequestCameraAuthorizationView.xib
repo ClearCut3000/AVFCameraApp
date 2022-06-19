@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RequestCameraAuthorizationView" customModule="AVFCameraApp" customModuleProvider="target">
             <connections>
                 <outlet property="actionButton" destination="dnx-U2-gBT" id="PcD-b2-RBZ"/>
+                <outlet property="actionButtonWithConstraint" destination="XyJ-cu-3Mg" id="4k9-hJ-MGm"/>
                 <outlet property="cameraImageView" destination="9TF-n6-jM5" id="Oe5-gp-e7T"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="4NS-hx-TqJ"/>
                 <outlet property="messageLabel" destination="uB3-mo-McL" id="unU-4L-dB3"/>
@@ -43,10 +44,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnx-U2-gBT" userLabel="Action Button">
-                    <rect key="frame" x="167" y="402" width="80" height="30"/>
+                    <rect key="frame" x="167" y="402" width="80" height="50"/>
                     <color key="backgroundColor" red="0.058823529411764705" green="0.058823529411764705" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="XyJ-cu-3Mg"/>
+                        <constraint firstAttribute="height" constant="50" id="dKH-2H-GDj"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Allow"/>

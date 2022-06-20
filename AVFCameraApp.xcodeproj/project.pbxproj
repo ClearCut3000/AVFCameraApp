@@ -18,6 +18,9 @@
 		366412A0285E7D460059C347 /* RequestCameraAuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3664129F285E7D460059C347 /* RequestCameraAuthorizationView.swift */; };
 		366412A2285E7D640059C347 /* RequestCameraAuthorizationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412A1285E7D640059C347 /* RequestCameraAuthorizationView.xib */; };
 		366412A7285E86F90059C347 /* RequestCameraAuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412A6285E86F90059C347 /* RequestCameraAuthorizationController.swift */; };
+		366412AA286115300059C347 /* RequestMicrophoneAuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412A9286115300059C347 /* RequestMicrophoneAuthorizationView.swift */; };
+		366412AC2861154F0059C347 /* RequestMicrophoneAuthorizationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412AB2861154F0059C347 /* RequestMicrophoneAuthorizationView.xib */; };
+		366412AF286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412AE286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		3664129F285E7D460059C347 /* RequestCameraAuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCameraAuthorizationView.swift; sourceTree = "<group>"; };
 		366412A1285E7D640059C347 /* RequestCameraAuthorizationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestCameraAuthorizationView.xib; sourceTree = "<group>"; };
 		366412A6285E86F90059C347 /* RequestCameraAuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCameraAuthorizationController.swift; sourceTree = "<group>"; };
+		366412A9286115300059C347 /* RequestMicrophoneAuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMicrophoneAuthorizationView.swift; sourceTree = "<group>"; };
+		366412AB2861154F0059C347 /* RequestMicrophoneAuthorizationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestMicrophoneAuthorizationView.xib; sourceTree = "<group>"; };
+		366412AE286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMicrophoneAuthorizationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,7 @@
 		3664129D285E7CCE0059C347 /* RequestAuthorization */ = {
 			isa = PBXGroup;
 			children = (
+				366412A8286114F70059C347 /* Microphone */,
 				3664129E285E7D000059C347 /* Camera */,
 			);
 			path = RequestAuthorization;
@@ -141,6 +148,7 @@
 		366412A4285E86BC0059C347 /* RequestAuthorization */ = {
 			isa = PBXGroup;
 			children = (
+				366412AD286119740059C347 /* Microphone */,
 				366412A5285E86D50059C347 /* Camera */,
 			);
 			path = RequestAuthorization;
@@ -152,6 +160,23 @@
 				366412A6285E86F90059C347 /* RequestCameraAuthorizationController.swift */,
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		366412A8286114F70059C347 /* Microphone */ = {
+			isa = PBXGroup;
+			children = (
+				366412A9286115300059C347 /* RequestMicrophoneAuthorizationView.swift */,
+				366412AB2861154F0059C347 /* RequestMicrophoneAuthorizationView.xib */,
+			);
+			path = Microphone;
+			sourceTree = "<group>";
+		};
+		366412AD286119740059C347 /* Microphone */ = {
+			isa = PBXGroup;
+			children = (
+				366412AE286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift */,
+			);
+			path = Microphone;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +239,7 @@
 			files = (
 				366412A2285E7D640059C347 /* RequestCameraAuthorizationView.xib in Resources */,
 				3664128E285E7A900059C347 /* LaunchScreen.storyboard in Resources */,
+				366412AC2861154F0059C347 /* RequestMicrophoneAuthorizationView.xib in Resources */,
 				3664128B285E7A900059C347 /* Assets.xcassets in Resources */,
 				36641289285E7A890059C347 /* Main.storyboard in Resources */,
 				3664129B285E7B5B0059C347 /* LaunchViewController.xib in Resources */,
@@ -229,6 +255,8 @@
 			files = (
 				36641286285E7A890059C347 /* ViewController.swift in Sources */,
 				36641282285E7A890059C347 /* AppDelegate.swift in Sources */,
+				366412AA286115300059C347 /* RequestMicrophoneAuthorizationView.swift in Sources */,
+				366412AF286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift in Sources */,
 				36641284285E7A890059C347 /* SceneDelegate.swift in Sources */,
 				366412A0285E7D460059C347 /* RequestCameraAuthorizationView.swift in Sources */,
 				366412A7285E86F90059C347 /* RequestCameraAuthorizationController.swift in Sources */,
@@ -385,6 +413,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AVFCameraApp/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please grant access to the camera to continue using the application by clicking the Allow button.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please grant access to the microphone to continue using the application by clicking the Allow button.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -414,6 +443,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AVFCameraApp/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please grant access to the camera to continue using the application by clicking the Allow button.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please grant access to the microphone to continue using the application by clicking the Allow button.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

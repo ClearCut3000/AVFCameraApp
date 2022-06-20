@@ -11,7 +11,14 @@ class LaunchViewController: UIViewController {
 
   //MARK: - Propertie's
   private var requestCameraAuthorizationView: RequestCameraAuthorizationView?
+  private var requestMicrophoneAuthorizationView: RequestMicrophoneAuthorizationView?
+
   private var cameraAuthorizationStatus = RequestCameraAuthorizationController.getCameraAuthorazationStatus() {
+    didSet {
+      setupViewForNextAuthorizationRequest()
+    }
+  }
+  private var microphoneAuthorizationStatus = RequestMicrophoneAuthorizationController.getMicrophoneAuthorazationStatus() {
     didSet {
       setupViewForNextAuthorizationRequest()
     }
@@ -26,6 +33,7 @@ class LaunchViewController: UIViewController {
 
 //MARK: - Setting View & View Control
 private extension LaunchViewController {
+  /// If permission is not received, then configure the view for the next authorization request
   func setupViewForNextAuthorizationRequest() {
     guard cameraAuthorizationStatus == .granted else {
       setupRequestCameraAuthorizationView()
@@ -35,8 +43,17 @@ private extension LaunchViewController {
       removeRequestCameraAuthorizationView()
       return
     }
+    guard microphoneAuthorizationStatus == .granted else {
+      setupRequestMicrophoneAuthorizationView()
+      return
+    }
+    if let _ = requestMicrophoneAuthorizationView {
+      removeRequestMicrophoneAuthorizationView()
+      return
+    }
   }
 
+  // Dealing with the Camera
   func setupRequestCameraAuthorizationView() {
     guard requestCameraAuthorizationView == nil else {
       if cameraAuthorizationStatus == .unauthorized {
@@ -71,6 +88,42 @@ private extension LaunchViewController {
     })
   }
 
+  // Dealing with the Microphone
+  func setupRequestMicrophoneAuthorizationView() {
+    guard requestMicrophoneAuthorizationView == nil else {
+      if microphoneAuthorizationStatus == .unauthorized {
+        requestMicrophoneAuthorizationView?.configureForErrorState()
+      }
+      return
+    }
+    let requestMicrophoneAuthorizationView = RequestMicrophoneAuthorizationView()
+    requestMicrophoneAuthorizationView.translatesAutoresizingMaskIntoConstraints = false
+    requestMicrophoneAuthorizationView.delegate = self
+    view.addSubview(requestMicrophoneAuthorizationView)
+    NSLayoutConstraint.activate([
+      requestMicrophoneAuthorizationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      requestMicrophoneAuthorizationView.topAnchor.constraint(equalTo: view.topAnchor),
+      requestMicrophoneAuthorizationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      requestMicrophoneAuthorizationView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+    ])
+    if microphoneAuthorizationStatus == .unauthorized {
+      requestMicrophoneAuthorizationView.configureForErrorState()
+    }
+    requestMicrophoneAuthorizationView.animateInViews()
+    self.requestMicrophoneAuthorizationView = requestMicrophoneAuthorizationView
+  }
+
+  func removeRequestMicrophoneAuthorizationView() {
+    guard let requestMicrophoneAuthorizationView = requestMicrophoneAuthorizationView else { return }
+    requestMicrophoneAuthorizationView.animateOutViews(completion: { [weak self] in
+      guard let self = self else { return }
+      requestMicrophoneAuthorizationView.removeFromSuperview()
+      self.requestMicrophoneAuthorizationView = nil
+      self.setupViewForNextAuthorizationRequest()
+    })
+  }
+
+  /// Opens user's setting if permission was not granted/not allowed initially
   func openSettings() {
     let settingsURLString = UIApplication.openSettingsURLString
     if let settingsURL = URL(string: settingsURLString) {
@@ -79,7 +132,7 @@ private extension LaunchViewController {
   }
 }
 
-//MARK: - Action Button Tapped Delegate
+//MARK: - Camera Action Button Tapped Delegate
 extension LaunchViewController: RequestCameraAuthorizationViewDelegate {
   func requestCameraAuthorizationTapped() {
     if cameraAuthorizationStatus == .notRequested {
@@ -90,6 +143,23 @@ extension LaunchViewController: RequestCameraAuthorizationViewDelegate {
       return
     }
     if cameraAuthorizationStatus == .unauthorized {
+      openSettings()
+      return
+    }
+  }
+}
+
+//MARK: - Microphone Action Button Tapped Delegate
+extension LaunchViewController: RequestMicrophoneAuthorizationViewDelegate {
+  func requestMicrophoneAuthorizationTapped() {
+    if microphoneAuthorizationStatus == .notRequested {
+      RequestMicrophoneAuthorizationController.requestMicrophoneAuthorization { [weak self] status in
+        guard let self = self else { return }
+        self.microphoneAuthorizationStatus = status
+      }
+      return
+    }
+    if microphoneAuthorizationStatus == .unauthorized {
       openSettings()
       return
     }

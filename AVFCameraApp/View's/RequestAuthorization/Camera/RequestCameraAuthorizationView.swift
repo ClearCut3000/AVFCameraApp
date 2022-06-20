@@ -76,7 +76,7 @@ class RequestCameraAuthorizationView: UIView {
     }
   }
 
-  func configureForDisableState() {
+  func configureForErrorState() {
     titleLabel.text = "Camera Authorization Denied!"
     actionButton.setTitle("Open Settings", for: .normal)
     actionButtonWithConstraint.constant = 120
@@ -88,7 +88,7 @@ class RequestCameraAuthorizationView: UIView {
   }
 }
 
-//MARK: - Animation's
+//MARK: - Animation Method's
 private extension RequestCameraAuthorizationView {
   func animateInView(view: UIView, delay: TimeInterval) {
     view.alpha = 0

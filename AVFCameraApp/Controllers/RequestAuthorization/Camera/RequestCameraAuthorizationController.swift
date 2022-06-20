@@ -33,7 +33,7 @@ class RequestCameraAuthorizationController {
   }
 
   /// Returns current device access status is it has already been granteg or not
-  static func getAuthorazationStatus() -> CameraAuthorazationStatus {
+  static func getCameraAuthorazationStatus() -> CameraAuthorazationStatus {
     let status = AVCaptureDevice.authorizationStatus(for: .video)
     switch status {
     case .notDetermined:

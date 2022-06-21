@@ -9,9 +9,10 @@ import UIKit
 
 class LaunchViewController: UIViewController {
 
-  //MARK: - Propertie's
+  //MARK: - Properties
   private var requestCameraAuthorizationView: RequestCameraAuthorizationView?
   private var requestMicrophoneAuthorizationView: RequestMicrophoneAuthorizationView?
+  private var requestPhotoLibraryAuthorizationView: RequestPhotoLibraryAuthorizationView?
 
   private var cameraAuthorizationStatus = RequestCameraAuthorizationController.getCameraAuthorazationStatus() {
     didSet {
@@ -19,6 +20,11 @@ class LaunchViewController: UIViewController {
     }
   }
   private var microphoneAuthorizationStatus = RequestMicrophoneAuthorizationController.getMicrophoneAuthorazationStatus() {
+    didSet {
+      setupViewForNextAuthorizationRequest()
+    }
+  }
+  private var photoLibraryAuthorizationStatus = RequestPhotoLibraryAuthorizationController.getPhotoLibraryAuthorazationStatus() {
     didSet {
       setupViewForNextAuthorizationRequest()
     }
@@ -50,6 +56,17 @@ private extension LaunchViewController {
     if let _ = requestMicrophoneAuthorizationView {
       removeRequestMicrophoneAuthorizationView()
       return
+    }
+    guard photoLibraryAuthorizationStatus == .granted else {
+      setupRequestPhotoLibraryAuthorizationView()
+      return
+    }
+    if let _ = requestPhotoLibraryAuthorizationView {
+      removeRequestPhotoLibraryAuthorizationView()
+      return
+    }
+    DispatchQueue.main.async {
+      AppSetup.loadCaptureViewController()
     }
   }
 
@@ -123,6 +140,41 @@ private extension LaunchViewController {
     })
   }
 
+  // Dealing with the Photo Library
+  func setupRequestPhotoLibraryAuthorizationView() {
+    guard requestPhotoLibraryAuthorizationView == nil else {
+      if photoLibraryAuthorizationStatus == .unauthorized {
+        requestPhotoLibraryAuthorizationView?.configureForErrorState()
+      }
+      return
+    }
+    let requestPhotoLibraryAuthorizationView = RequestPhotoLibraryAuthorizationView()
+    requestPhotoLibraryAuthorizationView.translatesAutoresizingMaskIntoConstraints = false
+    requestPhotoLibraryAuthorizationView.delegate = self
+    view.addSubview(requestPhotoLibraryAuthorizationView)
+    NSLayoutConstraint.activate([
+      requestPhotoLibraryAuthorizationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      requestPhotoLibraryAuthorizationView.topAnchor.constraint(equalTo: view.topAnchor),
+      requestPhotoLibraryAuthorizationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      requestPhotoLibraryAuthorizationView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+    ])
+    if photoLibraryAuthorizationStatus == .unauthorized {
+      requestPhotoLibraryAuthorizationView.configureForErrorState()
+    }
+    requestPhotoLibraryAuthorizationView.animateInViews()
+    self.requestPhotoLibraryAuthorizationView = requestPhotoLibraryAuthorizationView
+  }
+
+  func removeRequestPhotoLibraryAuthorizationView() {
+    guard let requestPhotoLibraryAuthorizationView = requestPhotoLibraryAuthorizationView else { return }
+    requestPhotoLibraryAuthorizationView.animateOutViews(completion: { [weak self] in
+      guard let self = self else { return }
+      requestPhotoLibraryAuthorizationView.removeFromSuperview()
+      self.requestPhotoLibraryAuthorizationView = nil
+      self.setupViewForNextAuthorizationRequest()
+    })
+  }
+
   /// Opens user's setting if permission was not granted/not allowed initially
   func openSettings() {
     let settingsURLString = UIApplication.openSettingsURLString
@@ -160,6 +212,23 @@ extension LaunchViewController: RequestMicrophoneAuthorizationViewDelegate {
       return
     }
     if microphoneAuthorizationStatus == .unauthorized {
+      openSettings()
+      return
+    }
+  }
+}
+
+//MARK: - Photo Library Action Button Tapped Delegate
+extension LaunchViewController: RequestPhotoLibraryAuthorizationViewDelegate {
+  func requestPhotoLibraryAuthorizationTapped() {
+    if photoLibraryAuthorizationStatus == .notRequested {
+      RequestPhotoLibraryAuthorizationController.requestPhotoLibraryAuthorization { [weak self] status in
+        guard let self = self else { return }
+        self.photoLibraryAuthorizationStatus = status
+      }
+      return
+    }
+    if photoLibraryAuthorizationStatus == .unauthorized {
       openSettings()
       return
     }

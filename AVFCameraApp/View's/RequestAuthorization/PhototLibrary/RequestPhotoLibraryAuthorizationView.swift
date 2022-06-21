@@ -1,24 +1,24 @@
 //
-//  RequestMicrophoneAuthorizationView.swift
+//  RequestPhotoLibraryAuthorizationView.swift
 //  AVFCameraApp
 //
-//  Created by Николай Никитин on 20.06.2022.
+//  Created by Николай Никитин on 21.06.2022.
 //
 
 import UIKit
 
-protocol RequestMicrophoneAuthorizationViewDelegate: AnyObject {
-  func requestCameraAuthorizationTapped()
+protocol RequestPhotoLibraryAuthorizationViewDelegate: AnyObject {
+  func requestPhotoLibraryAuthorizationTapped()
 }
 
-class RequestMicrophoneAuthorizationView: UIView {
+class RequestPhotoLibraryAuthorizationView: UIView {
 
   //MARK: - Properties
-  weak var delegate: RequestMicrophoneAuthorizationViewDelegate?
+  weak var delegate: RequestPhotoLibraryAuthorizationViewDelegate?
 
   //MARK: - Outlets
   @IBOutlet private weak var contentView: UIView!
-  @IBOutlet private weak var microphoneImageView: UIImageView!
+  @IBOutlet private weak var photoLibraryImageView: UIImageView!
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var messageLabel: UILabel!
   @IBOutlet private weak var actionButton: UIButton!
@@ -27,13 +27,11 @@ class RequestMicrophoneAuthorizationView: UIView {
   //MARK: - Init's
   override init(frame: CGRect) {
     super.init(frame: frame)
-    customInit()
   }
 
   required init?(coder: NSCoder) {
     super.init(coder: coder)
     customInit()
-    fatalError("init(coder:) has not been implemented")
   }
 
   private func customInit() {
@@ -48,7 +46,7 @@ class RequestMicrophoneAuthorizationView: UIView {
 
   //MARK: - Method's
   func animateInViews() {
-    let viewsToAnimate = [microphoneImageView, titleLabel, messageLabel, actionButton]
+    let viewsToAnimate = [photoLibraryImageView, titleLabel, messageLabel, actionButton]
     for (i, viewToAnimate) in viewsToAnimate.enumerated() {
       guard let view = viewToAnimate else { continue }
       view.animateInView(delay: Double(i) * 0.15)
@@ -56,7 +54,7 @@ class RequestMicrophoneAuthorizationView: UIView {
   }
 
   func animateOutViews(completion: @escaping () -> Void) {
-    let viewsToAnimate = [microphoneImageView, titleLabel, messageLabel, actionButton]
+    let viewsToAnimate = [photoLibraryImageView, titleLabel, messageLabel, actionButton]
     for (i, viewToAnimate) in viewsToAnimate.enumerated() {
       guard let view = viewToAnimate else { continue }
       var completionHandler: (() -> Void)? = nil
@@ -68,21 +66,20 @@ class RequestMicrophoneAuthorizationView: UIView {
   }
 
   func configureForErrorState() {
-    titleLabel.text = "Microphone Authorization Denied!"
+    titleLabel.text = "Photo Library Authorization Denied!"
     actionButton.setTitle("Open Settings", for: .normal)
     actionButtonWithConstraint.constant = 130
   }
 
+
   //MARK: - Action's
   @IBAction func actionButtonHandler(button: UIButton) {
-    delegate?.requestCameraAuthorizationTapped()
+    delegate?.requestPhotoLibraryAuthorizationTapped()
   }
 }
 
-//MARK: - Animation Method's
-private extension RequestMicrophoneAuthorizationView {
-  private func setupActionButtonShadow() {
+private extension RequestPhotoLibraryAuthorizationView {
+  func setupActionButtonShadow() {
     actionButton.addShadow()
   }
 }
-

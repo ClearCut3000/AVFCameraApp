@@ -21,6 +21,14 @@
 		366412AA286115300059C347 /* RequestMicrophoneAuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412A9286115300059C347 /* RequestMicrophoneAuthorizationView.swift */; };
 		366412AC2861154F0059C347 /* RequestMicrophoneAuthorizationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412AB2861154F0059C347 /* RequestMicrophoneAuthorizationView.xib */; };
 		366412AF286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412AE286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift */; };
+		366412B2286263710059C347 /* RequestPhotoLibraryAuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412B1286263710059C347 /* RequestPhotoLibraryAuthorizationView.swift */; };
+		366412B4286263820059C347 /* RequestPhotoLibraryAuthorizationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412B3286263820059C347 /* RequestPhotoLibraryAuthorizationView.xib */; };
+		366412B7286269820059C347 /* UIView+AddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412B6286269820059C347 /* UIView+AddShadow.swift */; };
+		366412B928626ADE0059C347 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412B828626ADE0059C347 /* UIView+Animation.swift */; };
+		366412BC28626D9B0059C347 /* RequestPhotoLibraryAuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412BB28626D9B0059C347 /* RequestPhotoLibraryAuthorizationController.swift */; };
+		366412C0286274640059C347 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412BE286274640059C347 /* CaptureViewController.swift */; };
+		366412C1286274640059C347 /* CaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412BF286274640059C347 /* CaptureViewController.xib */; };
+		366412C3286274B10059C347 /* AppSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412C2286274B10059C347 /* AppSetup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +48,14 @@
 		366412A9286115300059C347 /* RequestMicrophoneAuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMicrophoneAuthorizationView.swift; sourceTree = "<group>"; };
 		366412AB2861154F0059C347 /* RequestMicrophoneAuthorizationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestMicrophoneAuthorizationView.xib; sourceTree = "<group>"; };
 		366412AE286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMicrophoneAuthorizationController.swift; sourceTree = "<group>"; };
+		366412B1286263710059C347 /* RequestPhotoLibraryAuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPhotoLibraryAuthorizationView.swift; sourceTree = "<group>"; };
+		366412B3286263820059C347 /* RequestPhotoLibraryAuthorizationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestPhotoLibraryAuthorizationView.xib; sourceTree = "<group>"; };
+		366412B6286269820059C347 /* UIView+AddShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AddShadow.swift"; sourceTree = "<group>"; };
+		366412B828626ADE0059C347 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
+		366412BB28626D9B0059C347 /* RequestPhotoLibraryAuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPhotoLibraryAuthorizationController.swift; sourceTree = "<group>"; };
+		366412BE286274640059C347 /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
+		366412BF286274640059C347 /* CaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptureViewController.xib; sourceTree = "<group>"; };
+		366412C2286274B10059C347 /* AppSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +88,7 @@
 		36641280285E7A890059C347 /* AVFCameraApp */ = {
 			isa = PBXGroup;
 			children = (
+				366412B5286269610059C347 /* Extensions */,
 				366412A3285E86AD0059C347 /* Controllers */,
 				3664129C285E7CC60059C347 /* View's */,
 				36641295285E7B090059C347 /* ViewControllers */,
@@ -81,6 +98,7 @@
 				3664128A285E7A900059C347 /* Assets.xcassets */,
 				3664128C285E7A900059C347 /* LaunchScreen.storyboard */,
 				3664128F285E7A900059C347 /* Info.plist */,
+				366412C2286274B10059C347 /* AppSetup.swift */,
 			);
 			path = AVFCameraApp;
 			sourceTree = "<group>";
@@ -88,6 +106,7 @@
 		36641295285E7B090059C347 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				366412BD286274350059C347 /* Capture */,
 				36641297285E7B2B0059C347 /* Launch */,
 				36641296285E7B210059C347 /* ViewController */,
 			);
@@ -122,6 +141,7 @@
 		3664129D285E7CCE0059C347 /* RequestAuthorization */ = {
 			isa = PBXGroup;
 			children = (
+				366412B0286263350059C347 /* PhototLibrary */,
 				366412A8286114F70059C347 /* Microphone */,
 				3664129E285E7D000059C347 /* Camera */,
 			);
@@ -148,6 +168,7 @@
 		366412A4285E86BC0059C347 /* RequestAuthorization */ = {
 			isa = PBXGroup;
 			children = (
+				366412BA28626D7F0059C347 /* PhotoLibrary */,
 				366412AD286119740059C347 /* Microphone */,
 				366412A5285E86D50059C347 /* Camera */,
 			);
@@ -177,6 +198,41 @@
 				366412AE286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift */,
 			);
 			path = Microphone;
+			sourceTree = "<group>";
+		};
+		366412B0286263350059C347 /* PhototLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				366412B1286263710059C347 /* RequestPhotoLibraryAuthorizationView.swift */,
+				366412B3286263820059C347 /* RequestPhotoLibraryAuthorizationView.xib */,
+			);
+			path = PhototLibrary;
+			sourceTree = "<group>";
+		};
+		366412B5286269610059C347 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				366412B6286269820059C347 /* UIView+AddShadow.swift */,
+				366412B828626ADE0059C347 /* UIView+Animation.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		366412BA28626D7F0059C347 /* PhotoLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				366412BB28626D9B0059C347 /* RequestPhotoLibraryAuthorizationController.swift */,
+			);
+			path = PhotoLibrary;
+			sourceTree = "<group>";
+		};
+		366412BD286274350059C347 /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				366412BE286274640059C347 /* CaptureViewController.swift */,
+				366412BF286274640059C347 /* CaptureViewController.xib */,
+			);
+			path = Capture;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,9 +294,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				366412A2285E7D640059C347 /* RequestCameraAuthorizationView.xib in Resources */,
+				366412B4286263820059C347 /* RequestPhotoLibraryAuthorizationView.xib in Resources */,
 				3664128E285E7A900059C347 /* LaunchScreen.storyboard in Resources */,
 				366412AC2861154F0059C347 /* RequestMicrophoneAuthorizationView.xib in Resources */,
 				3664128B285E7A900059C347 /* Assets.xcassets in Resources */,
+				366412C1286274640059C347 /* CaptureViewController.xib in Resources */,
 				36641289285E7A890059C347 /* Main.storyboard in Resources */,
 				3664129B285E7B5B0059C347 /* LaunchViewController.xib in Resources */,
 			);
@@ -255,12 +313,18 @@
 			files = (
 				36641286285E7A890059C347 /* ViewController.swift in Sources */,
 				36641282285E7A890059C347 /* AppDelegate.swift in Sources */,
+				366412B7286269820059C347 /* UIView+AddShadow.swift in Sources */,
 				366412AA286115300059C347 /* RequestMicrophoneAuthorizationView.swift in Sources */,
 				366412AF286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift in Sources */,
 				36641284285E7A890059C347 /* SceneDelegate.swift in Sources */,
 				366412A0285E7D460059C347 /* RequestCameraAuthorizationView.swift in Sources */,
+				366412C3286274B10059C347 /* AppSetup.swift in Sources */,
 				366412A7285E86F90059C347 /* RequestCameraAuthorizationController.swift in Sources */,
+				366412C0286274640059C347 /* CaptureViewController.swift in Sources */,
+				366412BC28626D9B0059C347 /* RequestPhotoLibraryAuthorizationController.swift in Sources */,
 				3664129A285E7B5B0059C347 /* LaunchViewController.swift in Sources */,
+				366412B928626ADE0059C347 /* UIView+Animation.swift in Sources */,
+				366412B2286263710059C347 /* RequestPhotoLibraryAuthorizationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +478,7 @@
 				INFOPLIST_FILE = AVFCameraApp/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please grant access to the camera to continue using the application by clicking the Allow button.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please grant access to the microphone to continue using the application by clicking the Allow button.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please grant access to the photo library to continue using the application by clicking the Allow button.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -444,6 +509,7 @@
 				INFOPLIST_FILE = AVFCameraApp/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please grant access to the camera to continue using the application by clicking the Allow button.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please grant access to the microphone to continue using the application by clicking the Allow button.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please grant access to the photo library to continue using the application by clicking the Allow button.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

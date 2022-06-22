@@ -29,6 +29,7 @@
 		366412C0286274640059C347 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412BE286274640059C347 /* CaptureViewController.swift */; };
 		366412C1286274640059C347 /* CaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412BF286274640059C347 /* CaptureViewController.xib */; };
 		366412C3286274B10059C347 /* AppSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412C2286274B10059C347 /* AppSetup.swift */; };
+		366412C62863A55B0059C347 /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412C52863A55B0059C347 /* VideoPreviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		366412BE286274640059C347 /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		366412BF286274640059C347 /* CaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptureViewController.xib; sourceTree = "<group>"; };
 		366412C2286274B10059C347 /* AppSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetup.swift; sourceTree = "<group>"; };
+		366412C52863A55B0059C347 /* VideoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		3664129C285E7CC60059C347 /* View's */ = {
 			isa = PBXGroup;
 			children = (
+				366412C42863A5330059C347 /* VideoPreview */,
 				3664129D285E7CCE0059C347 /* RequestAuthorization */,
 			);
 			path = "View's";
@@ -235,6 +238,14 @@
 			path = Capture;
 			sourceTree = "<group>";
 		};
+		366412C42863A5330059C347 /* VideoPreview */ = {
+			isa = PBXGroup;
+			children = (
+				366412C52863A55B0059C347 /* VideoPreviewView.swift */,
+			);
+			path = VideoPreview;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -320,6 +331,7 @@
 				366412A0285E7D460059C347 /* RequestCameraAuthorizationView.swift in Sources */,
 				366412C3286274B10059C347 /* AppSetup.swift in Sources */,
 				366412A7285E86F90059C347 /* RequestCameraAuthorizationController.swift in Sources */,
+				366412C62863A55B0059C347 /* VideoPreviewView.swift in Sources */,
 				366412C0286274640059C347 /* CaptureViewController.swift in Sources */,
 				366412BC28626D9B0059C347 /* RequestPhotoLibraryAuthorizationController.swift in Sources */,
 				3664129A285E7B5B0059C347 /* LaunchViewController.swift in Sources */,

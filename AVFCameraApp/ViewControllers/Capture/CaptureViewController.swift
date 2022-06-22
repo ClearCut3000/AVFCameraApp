@@ -9,8 +9,12 @@ import UIKit
 
 class CaptureViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+  //MARK: - Outlets
+  @IBOutlet private weak var videoPreviewView: VideoPreviewView!
+
+  //MARK: - View Lifecycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
 
 }

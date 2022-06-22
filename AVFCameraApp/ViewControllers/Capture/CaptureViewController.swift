@@ -9,6 +9,9 @@ import UIKit
 
 class CaptureViewController: UIViewController {
 
+  //MARK: - Properties
+  private lazy var captureSession = CaptureSessionController()
+
   //MARK: - Outlets
   @IBOutlet private weak var videoPreviewView: VideoPreviewView!
 

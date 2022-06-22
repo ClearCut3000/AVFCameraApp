@@ -30,6 +30,7 @@
 		366412C1286274640059C347 /* CaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412BF286274640059C347 /* CaptureViewController.xib */; };
 		366412C3286274B10059C347 /* AppSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412C2286274B10059C347 /* AppSetup.swift */; };
 		366412C62863A55B0059C347 /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412C52863A55B0059C347 /* VideoPreviewView.swift */; };
+		366412C92863A83D0059C347 /* CaptureSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412C82863A83D0059C347 /* CaptureSessionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		366412BF286274640059C347 /* CaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptureViewController.xib; sourceTree = "<group>"; };
 		366412C2286274B10059C347 /* AppSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetup.swift; sourceTree = "<group>"; };
 		366412C52863A55B0059C347 /* VideoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewView.swift; sourceTree = "<group>"; };
+		366412C82863A83D0059C347 /* CaptureSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureSessionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 		366412A3285E86AD0059C347 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				366412C72863A81A0059C347 /* CaptureSession */,
 				366412A4285E86BC0059C347 /* RequestAuthorization */,
 			);
 			path = Controllers;
@@ -246,6 +249,14 @@
 			path = VideoPreview;
 			sourceTree = "<group>";
 		};
+		366412C72863A81A0059C347 /* CaptureSession */ = {
+			isa = PBXGroup;
+			children = (
+				366412C82863A83D0059C347 /* CaptureSessionController.swift */,
+			);
+			path = CaptureSession;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -327,6 +338,7 @@
 				366412B7286269820059C347 /* UIView+AddShadow.swift in Sources */,
 				366412AA286115300059C347 /* RequestMicrophoneAuthorizationView.swift in Sources */,
 				366412AF286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift in Sources */,
+				366412C92863A83D0059C347 /* CaptureSessionController.swift in Sources */,
 				36641284285E7A890059C347 /* SceneDelegate.swift in Sources */,
 				366412A0285E7D460059C347 /* RequestCameraAuthorizationView.swift in Sources */,
 				366412C3286274B10059C347 /* AppSetup.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 class CaptureViewController: UIViewController {
 
   //MARK: - Properties
-  private lazy var captureSession = CaptureSessionController()
+  private lazy var captureSessionController = CaptureSessionController()
 
   //MARK: - Outlets
   @IBOutlet private weak var videoPreviewView: VideoPreviewView!
@@ -18,6 +18,7 @@ class CaptureViewController: UIViewController {
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    videoPreviewView.videoPreviewLayer.session = captureSessionController.getCaptureSession()
   }
 
 }

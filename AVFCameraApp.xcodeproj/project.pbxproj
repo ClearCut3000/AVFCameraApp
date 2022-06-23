@@ -31,6 +31,8 @@
 		366412C3286274B10059C347 /* AppSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412C2286274B10059C347 /* AppSetup.swift */; };
 		366412C62863A55B0059C347 /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412C52863A55B0059C347 /* VideoPreviewView.swift */; };
 		366412C92863A83D0059C347 /* CaptureSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412C82863A83D0059C347 /* CaptureSessionController.swift */; };
+		366412CC2864F0A30059C347 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412CB2864F0A30059C347 /* TimerView.swift */; };
+		366412CE2864F0AE0059C347 /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412CD2864F0AE0059C347 /* TimerView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		366412C2286274B10059C347 /* AppSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetup.swift; sourceTree = "<group>"; };
 		366412C52863A55B0059C347 /* VideoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewView.swift; sourceTree = "<group>"; };
 		366412C82863A83D0059C347 /* CaptureSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureSessionController.swift; sourceTree = "<group>"; };
+		366412CB2864F0A30059C347 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		366412CD2864F0AE0059C347 /* TimerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimerView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 		3664129C285E7CC60059C347 /* View's */ = {
 			isa = PBXGroup;
 			children = (
+				366412CA2864F0890059C347 /* TimerView */,
 				366412C42863A5330059C347 /* VideoPreview */,
 				3664129D285E7CCE0059C347 /* RequestAuthorization */,
 			);
@@ -257,6 +262,15 @@
 			path = CaptureSession;
 			sourceTree = "<group>";
 		};
+		366412CA2864F0890059C347 /* TimerView */ = {
+			isa = PBXGroup;
+			children = (
+				366412CB2864F0A30059C347 /* TimerView.swift */,
+				366412CD2864F0AE0059C347 /* TimerView.xib */,
+			);
+			path = TimerView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -316,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				366412A2285E7D640059C347 /* RequestCameraAuthorizationView.xib in Resources */,
+				366412CE2864F0AE0059C347 /* TimerView.xib in Resources */,
 				366412B4286263820059C347 /* RequestPhotoLibraryAuthorizationView.xib in Resources */,
 				3664128E285E7A900059C347 /* LaunchScreen.storyboard in Resources */,
 				366412AC2861154F0059C347 /* RequestMicrophoneAuthorizationView.xib in Resources */,
@@ -340,6 +355,7 @@
 				366412AF286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift in Sources */,
 				366412C92863A83D0059C347 /* CaptureSessionController.swift in Sources */,
 				36641284285E7A890059C347 /* SceneDelegate.swift in Sources */,
+				366412CC2864F0A30059C347 /* TimerView.swift in Sources */,
 				366412A0285E7D460059C347 /* RequestCameraAuthorizationView.swift in Sources */,
 				366412C3286274B10059C347 /* AppSetup.swift in Sources */,
 				366412A7285E86F90059C347 /* RequestCameraAuthorizationController.swift in Sources */,

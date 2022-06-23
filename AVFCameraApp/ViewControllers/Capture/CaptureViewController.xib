@@ -23,10 +23,25 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aj4-Jo-czX" userLabel="Timer View">
+                    <rect key="frame" x="157" y="74" width="100" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="S8a-Qn-buX"/>
+                        <constraint firstAttribute="width" constant="100" id="WHT-uo-W8q"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="Aj4-Jo-czX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="3Kk-Kd-1S5"/>
+                <constraint firstItem="Aj4-Jo-czX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BI9-yE-7X0"/>
                 <constraint firstItem="ysI-7G-eU7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EbV-4u-0Tu"/>
                 <constraint firstItem="ysI-7G-eU7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lXZ-tS-wOC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ysI-7G-eU7" secondAttribute="trailing" id="p6G-4p-m0W"/>

@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rt-1X-PnG" userLabel="Container View">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rt-1X-PnG" userLabel="Container View">
                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Sj-eN-BWM" userLabel="Ring View">

@@ -13,10 +13,12 @@ class CaptureViewController: UIViewController {
   private lazy var captureSessionController = CaptureSessionController()
   private var portraitConstrains = [NSLayoutConstraint]()
   private var landscapeConstrains = [NSLayoutConstraint]()
+  private lazy var timerController = TimerController()
 
   //MARK: - Outlets
   @IBOutlet private weak var videoPreviewView: VideoPreviewView!
   @IBOutlet private weak var recordView: RecordView!
+  @IBOutlet private weak var timerView: TimerView!
 
   //MARK: - Layout
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -28,6 +30,16 @@ class CaptureViewController: UIViewController {
     super.viewDidLoad()
     videoPreviewView.videoPreviewLayer.session = captureSessionController.getCaptureSession()
     initializeConstraits()
+    setupTimer()
+  }
+
+  //MARK: - Methods
+  func setupTimer() {
+    timerController.setupTimer { [weak self] seconds in
+      guard let self = self else { return }
+      self.timerView.updateTime(seconds: seconds)
+      print(seconds)
+    }
   }
 }
 

@@ -29,6 +29,19 @@ class TimerView: UIView {
     addSubview(contentView)
     contentView.frame = bounds
     contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+  }
 
+  //MARK: - Methods
+  func updateTime(seconds: Int64) {
+    // mm:ss
+    let timeInterval = TimeInterval(integerLiteral: seconds)
+
+    let formatter = DateComponentsFormatter()
+    formatter.allowedUnits = [.minute, .second]
+    formatter.unitsStyle = .positional
+    formatter.zeroFormattingBehavior = .pad
+
+    let formattedString = formatter.string(from: timeInterval) ?? "00:00"
+    timerLabel.text = formattedString
   }
 }

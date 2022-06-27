@@ -26,15 +26,15 @@
                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Sj-eN-BWM" userLabel="Ring View">
-                            <rect key="frame" x="9" y="9" width="62" height="62"/>
+                            <rect key="frame" x="6" y="6" width="68" height="68"/>
                             <color key="backgroundColor" systemColor="systemRedColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="62" id="2KO-fr-eqS"/>
-                                <constraint firstAttribute="width" constant="62" id="Mwx-gL-GHU"/>
+                                <constraint firstAttribute="height" constant="68" id="2KO-fr-eqS"/>
+                                <constraint firstAttribute="width" constant="68" id="Mwx-gL-GHU"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="31"/>
+                                    <integer key="value" value="34"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>

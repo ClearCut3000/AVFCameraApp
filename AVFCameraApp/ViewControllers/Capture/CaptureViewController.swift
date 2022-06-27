@@ -22,7 +22,14 @@ class CaptureViewController: UIViewController {
 
   //MARK: - Layout
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-    setupOrienationConstraits(size: size)
+    hideRecordView()
+    coordinator.animate(alongsideTransition: {context in
+      
+    }) { [weak self] context in
+      guard let self = self else { return }
+      self.setupOrienationConstraits(size: size)
+      self.showRecordView()
+    }
   }
 
   //MARK: - View Lifecycle
@@ -30,16 +37,30 @@ class CaptureViewController: UIViewController {
     super.viewDidLoad()
     videoPreviewView.videoPreviewLayer.session = captureSessionController.getCaptureSession()
     initializeConstraits()
-    setupTimer()
   }
 
   //MARK: - Methods
-  func setupTimer() {
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+
+  private func setupTimer() {
     timerController.setupTimer { [weak self] seconds in
       guard let self = self else { return }
       self.timerView.updateTime(seconds: seconds)
       print(seconds)
     }
+  }
+
+  private func hideRecordView() {
+    recordView.alpha = 0
+  }
+
+  private func showRecordView() {
+    let animation = UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut) {
+      self.recordView.alpha = 1
+    }
+    animation.startAnimation()
   }
 }
 

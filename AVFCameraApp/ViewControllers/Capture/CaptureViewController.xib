@@ -22,19 +22,19 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ysI-7G-eU7" userLabel="Video Preview View" customClass="VideoPreviewView" customModule="AVFCameraApp" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRI-tq-ilH" customClass="RecordView" customModule="AVFCameraApp" customModuleProvider="target">
                     <rect key="frame" x="167" y="752" width="80" height="80"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="E7m-Q1-kad"/>
                         <constraint firstAttribute="width" constant="80" id="XXc-cc-gfK"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aj4-Jo-czX" userLabel="Timer View" customClass="TimerView" customModule="AVFCameraApp" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aj4-Jo-czX" userLabel="Timer View" customClass="TimerView" customModule="AVFCameraApp" customModuleProvider="target">
                     <rect key="frame" x="157" y="74" width="100" height="60"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="S8a-Qn-buX"/>
                         <constraint firstAttribute="width" constant="100" id="WHT-uo-W8q"/>

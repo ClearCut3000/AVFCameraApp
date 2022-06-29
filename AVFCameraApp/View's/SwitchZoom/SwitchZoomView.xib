@@ -11,6 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SwitchZoomView" customModule="AVFCameraApp" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="KV8-IW-rme"/>
+                <outlet property="stackView" destination="l8o-eO-Ncm" id="lEh-g0-3Wg"/>
+                <outlet property="telephotoButton" destination="f4X-4B-ygX" id="Sra-FG-IAg"/>
+                <outlet property="ultrawideButton" destination="FHb-TV-Jel" id="PgT-De-Ci3"/>
+                <outlet property="wideButton" destination="laD-6u-gW8" id="knc-O0-eYa"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -33,6 +37,9 @@
                                     <integer key="value" value="20"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="ultrawideButtonHandlerWithButton:" destination="-1" eventType="touchUpInside" id="gkX-32-3L4"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laD-6u-gW8" userLabel="Wide Button">
                             <rect key="frame" x="50" y="0.0" width="40" height="40"/>
@@ -46,6 +53,9 @@
                                     <integer key="value" value="20"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="wideButtonHandlerWithButton:" destination="-1" eventType="touchUpInside" id="g94-df-eMU"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4X-4B-ygX" userLabel="Telephoto Button">
                             <rect key="frame" x="100" y="0.0" width="40" height="40"/>
@@ -59,6 +69,9 @@
                                     <integer key="value" value="20"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="telephotoButtonHandlerWithButton:" destination="-1" eventType="touchUpInside" id="Tnq-BK-lLk"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>

@@ -12,6 +12,8 @@ class CaptureSessionController: NSObject {
 
   //MARK: - Properties
   private lazy var captureSession = AVCaptureSession()
+  private var captureDevice: AVCaptureDevice?
+  private var zoomState = ZoomState.wide
 
   //MARK: - Init's
   override init() {
@@ -23,9 +25,14 @@ class CaptureSessionController: NSObject {
   func getCaptureSession() -> AVCaptureSession {
     return captureSession
   }
+
+  func setZoomState(zoomState: ZoomState) {
+    self.zoomState = zoomState
+    setVideoZoomFactor()
+  }
 }
 
-//MARK: - Video Capture Device Extension
+//MARK: - Video CaptureDevice Extension
 private extension CaptureSessionController {
   func getVideoCaptureDevice() -> AVCaptureDevice? {
     if let tripleCamera = AVCaptureDevice.default(.builtInTripleCamera, for: .video, position: .back) {
@@ -55,9 +62,67 @@ private extension CaptureSessionController {
 
   func initializeCaptureSession() {
     guard let captureDevice = getVideoCaptureDevice() else { return }
+    self.captureDevice = captureDevice
     guard let captureDeviceInput = getCaptureDeviceInput(captureDevice: captureDevice) else { return }
     guard captureSession.canAddInput(captureDeviceInput) else { return }
     captureSession.addInput(captureDeviceInput)
     captureSession.startRunning()
+    setVideoZoomFactor()
+  }
+
+  func setVideoCaptureDeviceZoom(videoZoomFactor: CGFloat, animated: Bool = false, rate: Float = 0) {
+    guard let captureDevice = captureDevice else { return }
+    do {
+      try captureDevice.lockForConfiguration()
+    } catch let error {
+      print("Failed to get lock configuration on capture device with error - \(error)")
+      return
+    }
+    if animated {
+      captureDevice.ramp(toVideoZoomFactor: videoZoomFactor, withRate: rate)
+    } else {
+      captureDevice.videoZoomFactor = videoZoomFactor
+    }
+    captureDevice.unlockForConfiguration()
+  }
+
+  func getVideoZoomFactor() -> CGFloat {
+    switch zoomState {
+    case .ultrawide:
+      return 1
+    case .wide:
+      return getWideVideoZoomFactor()
+    case .telephoto:
+      return getTelephotoVideoZoomFactor()
+    }
+  }
+
+  func getWideVideoZoomFactor() -> CGFloat {
+    guard let captureDevice = captureDevice else { return 1 }
+    switch captureDevice.deviceType {
+    case .builtInTripleCamera:
+      return 3
+    case .builtInDualWideCamera:
+      return 2
+    default:
+      return 1
+    }
+  }
+
+  func getTelephotoVideoZoomFactor() -> CGFloat{
+    guard let captureDevice = captureDevice else { return 2 }
+    switch captureDevice.deviceType {
+    case .builtInTripleCamera:
+      return 3
+    case .builtInDualWideCamera:
+      return 2
+    default:
+      return 2
+    }
+  }
+
+  func setVideoZoomFactor() {
+    let videoZoomFactor = getVideoZoomFactor()
+    setVideoCaptureDeviceZoom(videoZoomFactor: videoZoomFactor)
   }
 }

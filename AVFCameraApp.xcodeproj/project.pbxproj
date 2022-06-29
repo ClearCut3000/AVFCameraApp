@@ -36,6 +36,9 @@
 		366412D128666CE90059C347 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412D028666CE90059C347 /* RecordView.swift */; };
 		366412D328666CFB0059C347 /* RecordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412D228666CFB0059C347 /* RecordView.xib */; };
 		366412D72868EE960059C347 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412D62868EE960059C347 /* TimerController.swift */; };
+		366412DA286BA4B30059C347 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412D9286BA4B30059C347 /* UIColor+Colors.swift */; };
+		366412DD286BA5A20059C347 /* SwitchZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412DC286BA5A20059C347 /* SwitchZoomView.swift */; };
+		366412DF286BA5AF0059C347 /* SwitchZoomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412DE286BA5AF0059C347 /* SwitchZoomView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +73,9 @@
 		366412D028666CE90059C347 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		366412D228666CFB0059C347 /* RecordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordView.xib; sourceTree = "<group>"; };
 		366412D62868EE960059C347 /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
+		366412D9286BA4B30059C347 /* UIColor+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
+		366412DC286BA5A20059C347 /* SwitchZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchZoomView.swift; sourceTree = "<group>"; };
+		366412DE286BA5AF0059C347 /* SwitchZoomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchZoomView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +153,7 @@
 		3664129C285E7CC60059C347 /* View's */ = {
 			isa = PBXGroup;
 			children = (
+				366412DB286BA5830059C347 /* SwitchZoom */,
 				366412CF28666CCA0059C347 /* RecordView */,
 				366412CA2864F0890059C347 /* TimerView */,
 				366412C42863A5330059C347 /* VideoPreview */,
@@ -233,6 +240,7 @@
 			children = (
 				366412B6286269820059C347 /* UIView+AddShadow.swift */,
 				366412B828626ADE0059C347 /* UIView+Animation.swift */,
+				366412D9286BA4B30059C347 /* UIColor+Colors.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -294,6 +302,15 @@
 				366412D62868EE960059C347 /* TimerController.swift */,
 			);
 			path = Timer;
+			sourceTree = "<group>";
+		};
+		366412DB286BA5830059C347 /* SwitchZoom */ = {
+			isa = PBXGroup;
+			children = (
+				366412DC286BA5A20059C347 /* SwitchZoomView.swift */,
+				366412DE286BA5AF0059C347 /* SwitchZoomView.xib */,
+			);
+			path = SwitchZoom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +381,7 @@
 				366412C1286274640059C347 /* CaptureViewController.xib in Resources */,
 				36641289285E7A890059C347 /* Main.storyboard in Resources */,
 				3664129B285E7B5B0059C347 /* LaunchViewController.xib in Resources */,
+				366412DF286BA5AF0059C347 /* SwitchZoomView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +399,7 @@
 				366412AA286115300059C347 /* RequestMicrophoneAuthorizationView.swift in Sources */,
 				366412AF286119AB0059C347 /* RequestMicrophoneAuthorizationController.swift in Sources */,
 				366412C92863A83D0059C347 /* CaptureSessionController.swift in Sources */,
+				366412DD286BA5A20059C347 /* SwitchZoomView.swift in Sources */,
 				36641284285E7A890059C347 /* SceneDelegate.swift in Sources */,
 				366412CC2864F0A30059C347 /* TimerView.swift in Sources */,
 				366412A0285E7D460059C347 /* RequestCameraAuthorizationView.swift in Sources */,
@@ -391,6 +410,7 @@
 				366412D72868EE960059C347 /* TimerController.swift in Sources */,
 				366412BC28626D9B0059C347 /* RequestPhotoLibraryAuthorizationController.swift in Sources */,
 				3664129A285E7B5B0059C347 /* LaunchViewController.swift in Sources */,
+				366412DA286BA4B30059C347 /* UIColor+Colors.swift in Sources */,
 				366412B928626ADE0059C347 /* UIView+Animation.swift in Sources */,
 				366412B2286263710059C347 /* RequestPhotoLibraryAuthorizationView.swift in Sources */,
 			);

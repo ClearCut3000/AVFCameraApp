@@ -10,7 +10,7 @@ import UIKit
 class CaptureViewController: UIViewController {
 
   //MARK: - Properties
-  private lazy var captureSessionController = CaptureSessionController()
+  private var captureSessionController: CaptureSessionController!
   private var portraitConstrains = [NSLayoutConstraint]()
   private var landscapeConstrains = [NSLayoutConstraint]()
   private lazy var timerController = TimerController()
@@ -36,9 +36,7 @@ class CaptureViewController: UIViewController {
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    videoPreviewView.videoPreviewLayer.session = captureSessionController.getCaptureSession()
-    initializeConstraits()
-    setupSwitchZoomView()
+    setupCaptureSessionController()
   }
 
   //MARK: - Methods
@@ -69,6 +67,15 @@ class CaptureViewController: UIViewController {
 
   private func setupSwitchZoomView() {
     switchZoomView.delegate = self
+  }
+
+  private func setupCaptureSessionController() {
+    captureSessionController = CaptureSessionController(completion: { [weak self] in
+      guard let self = self else { return }
+      self.videoPreviewView.videoPreviewLayer.session = self.captureSessionController.getCaptureSession()
+      self.initializeConstraits()
+      self.setupSwitchZoomView()
+    })
   }
 }
 

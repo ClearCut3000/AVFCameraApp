@@ -8,6 +8,14 @@
 import Foundation
 import AVFoundation
 
+enum CameraType {
+  case ultrawide
+  case wide
+  case telephoto
+}
+
+typealias CaptureSessionInitializedCompletionHandler = () -> Void
+
 class CaptureSessionController: NSObject {
 
   //MARK: - Properties
@@ -15,10 +23,10 @@ class CaptureSessionController: NSObject {
   private var captureDevice: AVCaptureDevice?
   private var zoomState = ZoomState.wide
 
-  //MARK: - Init's
-  override init() {
+  //MARK: - Init
+  init(completion: @escaping CaptureSessionInitializedCompletionHandler) {
     super.init()
-    initializeCaptureSession()
+    initializeCaptureSession(completion: completion)
   }
 
   //MARK: - Methods
@@ -29,6 +37,22 @@ class CaptureSessionController: NSObject {
   func setZoomState(zoomState: ZoomState) {
     self.zoomState = zoomState
     setVideoZoomFactor()
+  }
+
+  func getCameraTypes() -> [CameraType]? {
+    guard let captureDevice = captureDevice else { return nil }
+    switch captureDevice.deviceType {
+    case .builtInTripleCamera:
+      return [.ultrawide, .wide, .telephoto]
+    case .builtInDualWideCamera:
+      return [.ultrawide, .wide]
+    case .builtInDualCamera:
+      return [.wide, .telephoto]
+    case .builtInWideAngleCamera:
+      return [.wide]
+    default:
+      return nil
+    }
   }
 }
 
@@ -60,7 +84,7 @@ private extension CaptureSessionController {
     return nil
   }
 
-  func initializeCaptureSession() {
+  func initializeCaptureSession(completion: @escaping CaptureSessionInitializedCompletionHandler) {
     guard let captureDevice = getVideoCaptureDevice() else { return }
     self.captureDevice = captureDevice
     guard let captureDeviceInput = getCaptureDeviceInput(captureDevice: captureDevice) else { return }
@@ -68,6 +92,7 @@ private extension CaptureSessionController {
     captureSession.addInput(captureDeviceInput)
     captureSession.startRunning()
     setVideoZoomFactor()
+    completion()
   }
 
   func setVideoCaptureDeviceZoom(videoZoomFactor: CGFloat, animated: Bool = false, rate: Float = 0) {

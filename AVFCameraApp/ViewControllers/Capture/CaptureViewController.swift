@@ -67,6 +67,17 @@ class CaptureViewController: UIViewController {
 
   private func setupSwitchZoomView() {
     switchZoomView.delegate = self
+    if let cameraTypes = captureSessionController.getCameraTypes() {
+      if cameraTypes.filter({ $0 == CameraType.ultrawide }).isEmpty {
+        switchZoomView.hideUltrawideButton()
+      }
+      if cameraTypes.filter({ $0 == CameraType.telephoto }).isEmpty {
+        switchZoomView.hideTelephotoButton()
+      }
+      if cameraTypes == [.wide] {
+        switchZoomView.alpha = 0
+      }
+    }
   }
 
   private func setupCaptureSessionController() {

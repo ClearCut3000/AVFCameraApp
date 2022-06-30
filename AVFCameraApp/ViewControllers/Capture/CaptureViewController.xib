@@ -13,7 +13,9 @@
                 <outlet property="recordView" destination="GRI-tq-ilH" id="DP6-WJ-6TK"/>
                 <outlet property="switchZoomView" destination="oJd-Ca-1EO" id="kGf-qo-spd"/>
                 <outlet property="timerView" destination="Aj4-Jo-czX" id="9N1-e1-Zdb"/>
+                <outlet property="toggleCameraView" destination="CdS-ir-DIo" id="dIl-Ui-D62"/>
                 <outlet property="videoPreviewView" destination="ysI-7G-eU7" id="TNa-Ww-7cq"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="C9i-rJ-Q2i"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -54,6 +56,14 @@
                         <constraint firstAttribute="height" constant="60" placeholder="YES" id="lug-l2-OWq"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdS-ir-DIo" userLabel="Toggle Camera View" customClass="ToggleCameraView" customModule="AVFCameraApp" customModuleProvider="target">
+                    <rect key="frame" x="324" y="762" width="60" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="FdS-vY-1wX"/>
+                        <constraint firstAttribute="height" constant="60" id="jbo-iL-Gl7"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -62,14 +72,16 @@
                 <constraint firstItem="Aj4-Jo-czX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="3Kk-Kd-1S5"/>
                 <constraint firstItem="Aj4-Jo-czX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BI9-yE-7X0"/>
                 <constraint firstItem="ysI-7G-eU7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EbV-4u-0Tu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CdS-ir-DIo" secondAttribute="trailing" constant="30" placeholder="YES" id="Nox-gW-Ny3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="GRI-tq-ilH" secondAttribute="bottom" constant="30" placeholder="YES" id="d0H-KF-UTS"/>
                 <constraint firstItem="GRI-tq-ilH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" placeholder="YES" id="hmW-l4-sU8"/>
                 <constraint firstItem="ysI-7G-eU7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lXZ-tS-wOC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ysI-7G-eU7" secondAttribute="trailing" id="p6G-4p-m0W"/>
                 <constraint firstItem="ysI-7G-eU7" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="slO-Bb-0Bs"/>
                 <constraint firstItem="oJd-Ca-1EO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" placeholder="YES" id="tHv-vc-QCn"/>
+                <constraint firstItem="GRI-tq-ilH" firstAttribute="centerY" secondItem="CdS-ir-DIo" secondAttribute="centerY" placeholder="YES" id="u4t-g6-5kD"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="92"/>
+            <point key="canvasLocation" x="137.68115942028987" y="91.741071428571431"/>
         </view>
     </objects>
     <resources>

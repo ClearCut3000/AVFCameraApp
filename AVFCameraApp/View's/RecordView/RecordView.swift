@@ -27,6 +27,7 @@ class RecordView: UIView {
   //MARK: - Init's
   override init(frame: CGRect) {
     super.init(frame: frame)
+    customInit()
   }
 
   required init?(coder: NSCoder) {

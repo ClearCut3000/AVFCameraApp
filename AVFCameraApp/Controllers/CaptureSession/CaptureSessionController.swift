@@ -22,14 +22,16 @@ class CaptureSessionController: NSObject {
   private lazy var captureSession = AVCaptureSession()
   private var captureDevice: AVCaptureDevice?
   private var zoomState = ZoomState.wide
+  private var captureDeviceInput: AVCaptureDeviceInput?
 
   //MARK: - Init
   init(completion: @escaping CaptureSessionInitializedCompletionHandler) {
     super.init()
+    captureDevice = getBackVideoCaptureDevice()
     initializeCaptureSession(completion: completion)
   }
 
-  //MARK: - Methods
+  //MARK: - Public Methods
   func getCaptureSession() -> AVCaptureSession {
     return captureSession
   }
@@ -54,11 +56,22 @@ class CaptureSessionController: NSObject {
       return nil
     }
   }
+
+  func toggleCamera() {
+    if let captureDeviceInput = captureDeviceInput {
+      captureSession.removeInput(captureDeviceInput)
+    }
+    if let frontCaptureDevice = getFrontVideoCaptureDevice() {
+      initializeCaptureSession(captureDevice: frontCaptureDevice) {
+
+      }
+    }
+  }
 }
 
-//MARK: - Video CaptureDevice Extension
+//MARK: - Video CaptureDevice Private Extension
 private extension CaptureSessionController {
-  func getVideoCaptureDevice() -> AVCaptureDevice? {
+  func getBackVideoCaptureDevice() -> AVCaptureDevice? {
     if let tripleCamera = AVCaptureDevice.default(.builtInTripleCamera, for: .video, position: .back) {
       return tripleCamera
     }
@@ -74,6 +87,16 @@ private extension CaptureSessionController {
     return nil
   }
 
+  func getFrontVideoCaptureDevice() -> AVCaptureDevice? {
+    if let trueDepthCamera = AVCaptureDevice.default(.builtInTrueDepthCamera, for: .video, position: .front) {
+      return trueDepthCamera
+    }
+    if let wideAngleCamera =  AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
+      return wideAngleCamera
+    }
+    return nil
+  }
+
   func getCaptureDeviceInput(captureDevice: AVCaptureDevice) -> AVCaptureDeviceInput? {
     do {
       let captureDeviceInput = try AVCaptureDeviceInput(device: captureDevice)
@@ -84,10 +107,15 @@ private extension CaptureSessionController {
     return nil
   }
 
-  func initializeCaptureSession(completion: @escaping CaptureSessionInitializedCompletionHandler) {
-    guard let captureDevice = getVideoCaptureDevice() else { return }
+  func initializeCaptureSession(captureDevice: AVCaptureDevice? = nil, completion: @escaping CaptureSessionInitializedCompletionHandler) {
+    var tempCaptureDevice = captureDevice
+    if let passedCaptureDevice = captureDevice {
+      tempCaptureDevice = passedCaptureDevice
+    }
+    guard let captureDevice = tempCaptureDevice else { return }
     self.captureDevice = captureDevice
     guard let captureDeviceInput = getCaptureDeviceInput(captureDevice: captureDevice) else { return }
+    self.captureDeviceInput = captureDeviceInput
     guard captureSession.canAddInput(captureDeviceInput) else { return }
     captureSession.addInput(captureDeviceInput)
     captureSession.startRunning()

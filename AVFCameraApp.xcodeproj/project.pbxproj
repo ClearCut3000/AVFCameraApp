@@ -41,6 +41,7 @@
 		366412DF286BA5AF0059C347 /* SwitchZoomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412DE286BA5AF0059C347 /* SwitchZoomView.xib */; };
 		366412E2286E0DD60059C347 /* ToggleCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412E1286E0DD60059C347 /* ToggleCameraView.swift */; };
 		366412E4286E0DE00059C347 /* ToggleCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412E3286E0DE00059C347 /* ToggleCameraView.xib */; };
+		366412E6286E31F60059C347 /* NotificationName+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412E5286E31F50059C347 /* NotificationName+Custom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		366412DE286BA5AF0059C347 /* SwitchZoomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchZoomView.xib; sourceTree = "<group>"; };
 		366412E1286E0DD60059C347 /* ToggleCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCameraView.swift; sourceTree = "<group>"; };
 		366412E3286E0DE00059C347 /* ToggleCameraView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleCameraView.xib; sourceTree = "<group>"; };
+		366412E5286E31F50059C347 /* NotificationName+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Custom.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 				366412B6286269820059C347 /* UIView+AddShadow.swift */,
 				366412B828626ADE0059C347 /* UIView+Animation.swift */,
 				366412D9286BA4B30059C347 /* UIColor+Colors.swift */,
+				366412E5286E31F50059C347 /* NotificationName+Custom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				366412C92863A83D0059C347 /* CaptureSessionController.swift in Sources */,
 				366412DD286BA5A20059C347 /* SwitchZoomView.swift in Sources */,
 				36641284285E7A890059C347 /* SceneDelegate.swift in Sources */,
+				366412E6286E31F60059C347 /* NotificationName+Custom.swift in Sources */,
 				366412CC2864F0A30059C347 /* TimerView.swift in Sources */,
 				366412A0285E7D460059C347 /* RequestCameraAuthorizationView.swift in Sources */,
 				366412C3286274B10059C347 /* AppSetup.swift in Sources */,

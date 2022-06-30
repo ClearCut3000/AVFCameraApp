@@ -21,6 +21,7 @@ class CaptureViewController: UIViewController {
   @IBOutlet private weak var timerView: TimerView!
   @IBOutlet private weak var switchZoomView: SwitchZoomView!
   @IBOutlet private weak var toggleCameraView: ToggleCameraView!
+  @IBOutlet private weak var visualEffectView: UIVisualEffectView!
 
   //MARK: - Layout
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -37,14 +38,21 @@ class CaptureViewController: UIViewController {
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupVisualEffectView()
     initializeConstraits()
     setupToggleCameraView()
     setupCaptureSessionController()
+    registerForApplicationStateNotifications()
   }
 
   //MARK: - Methods
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
+  }
+
+  deinit {
+    NotificationCenter.default.removeObserver(self, name: .ApplicationDidBecomeActive, object: nil)
+    NotificationCenter.default.removeObserver(self, name: .ApplicationWillResignActive, object: nil)
   }
 
   private func setupTimer() {
@@ -93,6 +101,31 @@ class CaptureViewController: UIViewController {
 
   private func setupToggleCameraView() {
     toggleCameraView.delegate = self
+  }
+
+  private func setupVisualEffectView() {
+    visualEffectView.effect = nil
+  }
+
+  private func registerForApplicationStateNotifications() {
+    // When App becomes active
+    NotificationCenter.default.addObserver(forName: .ApplicationDidBecomeActive,
+                                           object: nil,
+                                           queue: .main) { [weak self] notification in
+      guard let self = self else { return }
+      UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+        self.visualEffectView.effect = nil
+      } completion: { _ in }
+    }
+    // when App goes to inactive state
+    NotificationCenter.default.addObserver(forName: .ApplicationWillResignActive,
+                                           object: nil,
+                                           queue: .main) { [weak self] notification in
+      guard let self = self else { return }
+      UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+        self.visualEffectView.effect = UIBlurEffect(style: .dark)
+      } completion: { _ in }
+    }
   }
 }
 

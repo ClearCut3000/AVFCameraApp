@@ -25,13 +25,28 @@ class CaptureSessionController: NSObject {
   private var captureDeviceInput: AVCaptureDeviceInput?
 
   //MARK: - Init
-  init(completion: @escaping CaptureSessionInitializedCompletionHandler) {
+  override init() {
     super.init()
     captureDevice = getBackVideoCaptureDevice()
-    initializeCaptureSession(completion: completion)
   }
 
   //MARK: - Public Methods
+  func initializeCaptureSession(captureDevice: AVCaptureDevice? = nil, completion: @escaping CaptureSessionInitializedCompletionHandler) {
+    var tempCaptureDevice = self.captureDevice
+    if let passedCaptureDevice = captureDevice {
+      tempCaptureDevice = passedCaptureDevice
+    }
+    guard let captureDevice = tempCaptureDevice else { return }
+    self.captureDevice = captureDevice
+    guard let captureDeviceInput = getCaptureDeviceInput(captureDevice: captureDevice) else { return }
+    self.captureDeviceInput = captureDeviceInput
+    guard captureSession.canAddInput(captureDeviceInput) else { return }
+    captureSession.addInput(captureDeviceInput)
+    captureSession.startRunning()
+    setVideoZoomFactor()
+    completion()
+  }
+
   func getCaptureSession() -> AVCaptureSession {
     return captureSession
   }
@@ -105,22 +120,6 @@ private extension CaptureSessionController {
       print("Failed to get capture device input with error - \(error)")
     }
     return nil
-  }
-
-  func initializeCaptureSession(captureDevice: AVCaptureDevice? = nil, completion: @escaping CaptureSessionInitializedCompletionHandler) {
-    var tempCaptureDevice = captureDevice
-    if let passedCaptureDevice = captureDevice {
-      tempCaptureDevice = passedCaptureDevice
-    }
-    guard let captureDevice = tempCaptureDevice else { return }
-    self.captureDevice = captureDevice
-    guard let captureDeviceInput = getCaptureDeviceInput(captureDevice: captureDevice) else { return }
-    self.captureDeviceInput = captureDeviceInput
-    guard captureSession.canAddInput(captureDeviceInput) else { return }
-    captureSession.addInput(captureDeviceInput)
-    captureSession.startRunning()
-    setVideoZoomFactor()
-    completion()
   }
 
   func setVideoCaptureDeviceZoom(videoZoomFactor: CGFloat, animated: Bool = false, rate: Float = 0) {

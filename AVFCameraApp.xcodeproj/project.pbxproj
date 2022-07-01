@@ -42,6 +42,7 @@
 		366412E2286E0DD60059C347 /* ToggleCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412E1286E0DD60059C347 /* ToggleCameraView.swift */; };
 		366412E4286E0DE00059C347 /* ToggleCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412E3286E0DE00059C347 /* ToggleCameraView.xib */; };
 		366412E6286E31F60059C347 /* NotificationName+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412E5286E31F50059C347 /* NotificationName+Custom.swift */; };
+		366412E9286F81180059C347 /* VideoOrientationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412E8286F81180059C347 /* VideoOrientationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		366412E1286E0DD60059C347 /* ToggleCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCameraView.swift; sourceTree = "<group>"; };
 		366412E3286E0DE00059C347 /* ToggleCameraView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleCameraView.xib; sourceTree = "<group>"; };
 		366412E5286E31F50059C347 /* NotificationName+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Custom.swift"; sourceTree = "<group>"; };
+		366412E8286F81180059C347 /* VideoOrientationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoOrientationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 		366412A3285E86AD0059C347 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				366412E7286F80F70059C347 /* VideoOrientationController */,
 				366412D52868EE670059C347 /* Timer */,
 				366412C72863A81A0059C347 /* CaptureSession */,
 				366412A4285E86BC0059C347 /* RequestAuthorization */,
@@ -330,6 +333,14 @@
 			path = ToggleCamera;
 			sourceTree = "<group>";
 		};
+		366412E7286F80F70059C347 /* VideoOrientationController */ = {
+			isa = PBXGroup;
+			children = (
+				366412E8286F81180059C347 /* VideoOrientationController.swift */,
+			);
+			path = VideoOrientationController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -422,6 +433,7 @@
 				366412E6286E31F60059C347 /* NotificationName+Custom.swift in Sources */,
 				366412CC2864F0A30059C347 /* TimerView.swift in Sources */,
 				366412A0285E7D460059C347 /* RequestCameraAuthorizationView.swift in Sources */,
+				366412E9286F81180059C347 /* VideoOrientationController.swift in Sources */,
 				366412C3286274B10059C347 /* AppSetup.swift in Sources */,
 				366412A7285E86F90059C347 /* RequestCameraAuthorizationController.swift in Sources */,
 				366412C62863A55B0059C347 /* VideoPreviewView.swift in Sources */,

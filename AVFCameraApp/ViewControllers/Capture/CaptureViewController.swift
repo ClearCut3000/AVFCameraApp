@@ -10,7 +10,7 @@ import UIKit
 class CaptureViewController: UIViewController {
 
   //MARK: - Properties
-  private var captureSessionController: CaptureSessionController!
+  private var captureSessionController = CaptureSessionController()
   private var portraitConstrains = [NSLayoutConstraint]()
   private var landscapeConstrains = [NSLayoutConstraint]()
   private lazy var timerController = TimerController()
@@ -26,8 +26,9 @@ class CaptureViewController: UIViewController {
   //MARK: - Layout
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     hideViewsBeforeOrientationChange()
-    coordinator.animate(alongsideTransition: {context in
-      
+    coordinator.animate(alongsideTransition: { [weak self] context in
+      guard let self = self else { return }
+      self.setupVideoOrientation()
     }) { [weak self] context in
       guard let self = self else { return }
       self.setupOrienationConstraits(size: size)
@@ -92,9 +93,11 @@ class CaptureViewController: UIViewController {
   }
 
   private func setupCaptureSessionController() {
-    captureSessionController = CaptureSessionController(completion: { [weak self] in
+    captureSessionController.initializeCaptureSession(completion: { [weak self] in
       guard let self = self else { return }
       self.videoPreviewView.videoPreviewLayer.session = self.captureSessionController.getCaptureSession()
+      self.setupVideoOrientation()
+      self.setupToggleCameraView()
       self.setupSwitchZoomView()
     })
   }
@@ -126,6 +129,12 @@ class CaptureViewController: UIViewController {
         self.visualEffectView.effect = UIBlurEffect(style: .dark)
       } completion: { _ in }
     }
+  }
+
+  private func setupVideoOrientation() {
+    guard let interfaceOrientation = AppSetup.interfaceOrientation else { return }
+    guard let videoOrientation = VideoOrientationController.getVideoOrientation(interfaceOrientation: interfaceOrientation) else { return }
+    videoPreviewView.videoPreviewLayer.connection?.videoOrientation = videoOrientation
   }
 }
 

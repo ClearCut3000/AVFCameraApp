@@ -190,6 +190,6 @@ extension CaptureViewController: SwitchZoomViewDelegate {
 //MARK: - Toggle Camera Button Protocol
 extension CaptureViewController: ToggleCameraViewDelegate {
   func toggleCameraTapped() {
-
+    captureSessionController.toggleCamera()
   }
 }

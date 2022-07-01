@@ -76,9 +76,11 @@ class CaptureSessionController: NSObject {
     if let captureDeviceInput = captureDeviceInput {
       captureSession.removeInput(captureDeviceInput)
     }
-    if let frontCaptureDevice = getFrontVideoCaptureDevice() {
-      initializeCaptureSession(captureDevice: frontCaptureDevice) {
-
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else { return }
+      if let frontCaptureDevice = self.getFrontVideoCaptureDevice() {
+        self.initializeCaptureSession(captureDevice: frontCaptureDevice) {
+        }
       }
     }
   }

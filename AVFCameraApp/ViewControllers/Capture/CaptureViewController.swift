@@ -25,6 +25,7 @@ class CaptureViewController: UIViewController {
   @IBOutlet private weak var switchZoomView: SwitchZoomView!
   @IBOutlet private weak var toggleCameraView: ToggleCameraView!
   @IBOutlet private weak var visualEffectView: UIVisualEffectView!
+  @IBOutlet private weak var overlayView: UIView!
 
   //MARK: - Layout
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -156,6 +157,17 @@ class CaptureViewController: UIViewController {
       switchZoomView.isHidden = false
     }
     toggleCameraView.isHidden = false
+  }
+
+  //MARK: - Action's
+  @IBAction func overlayViewTapHandler(tapGestureRecognizer: UITapGestureRecognizer) {
+    let tapView = tapGestureRecognizer.view
+    let tapLocation = tapGestureRecognizer.location(in: tapView)
+    let devicePoint = videoPreviewView.videoPreviewLayer.captureDevicePointConverted(fromLayerPoint: tapLocation)
+    captureSessionController.setFocus(focusMode: .autoFocus,
+                                      exposureMode: .autoExpose,
+                                      atPoint: devicePoint,
+                                      shouldMonitorSubjectAreaChange: true)
   }
 }
 

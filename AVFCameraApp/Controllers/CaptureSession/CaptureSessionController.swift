@@ -50,6 +50,13 @@ class CaptureSessionController: NSObject {
     guard let captureDeviceInput = getCaptureDeviceInput(captureDevice: captureDevice) else { return }
     self.captureDeviceInput = captureDeviceInput
     guard captureSession.canAddInput(captureDeviceInput) else { return }
+    NotificationCenter.default.removeObserver(self,
+                                              name: .AVCaptureDeviceSubjectAreaDidChange,
+                                              object: captureDevice)
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(subjectAreaDidChangeNotificationHandler(notification:)),
+                                           name: .AVCaptureDeviceSubjectAreaDidChange,
+                                           object: captureDevice)
     captureSession.addInput(captureDeviceInput)
     captureSession.startRunning()
     setVideoZoomFactor()
@@ -109,6 +116,38 @@ class CaptureSessionController: NSObject {
 
   func startRunning() {
     captureSession.startRunning()
+  }
+
+  func setFocus(focusMode: AVCaptureDevice.FocusMode,
+                exposureMode: AVCaptureDevice.ExposureMode,
+                atPoint devicePoint: CGPoint,
+                shouldMonitorSubjectAreaChange: Bool) {
+    guard let captureDevice = captureDevice else { return }
+    do {
+      try captureDevice.lockForConfiguration()
+    } catch let error as NSError {
+      print("Failed to get lock for configuration on capture device with error - \(error)")
+      return
+    }
+    if captureDevice.isFocusPointOfInterestSupported, captureDevice.isFocusModeSupported(focusMode) {
+      captureDevice.focusPointOfInterest = devicePoint
+      captureDevice.focusMode = focusMode
+    }
+    if captureDevice.isExposurePointOfInterestSupported, captureDevice.isExposureModeSupported(exposureMode) {
+      captureDevice.exposurePointOfInterest = devicePoint
+      captureDevice.exposureMode = exposureMode
+    }
+    captureDevice.isSubjectAreaChangeMonitoringEnabled = shouldMonitorSubjectAreaChange
+    captureDevice.unlockForConfiguration()
+  }
+
+  /// Responsible for answering the calls for the subject area changes
+  @objc func subjectAreaDidChangeNotificationHandler(notification: Notification) {
+    let devicePoint = CGPoint(x: 0.5, y: 0.5)
+    setFocus(focusMode: .continuousAutoFocus,
+             exposureMode: .continuousAutoExposure,
+             atPoint: devicePoint,
+             shouldMonitorSubjectAreaChange: false)
   }
 }
 

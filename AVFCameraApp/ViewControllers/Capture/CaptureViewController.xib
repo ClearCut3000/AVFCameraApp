@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CaptureViewController" customModule="AVFCameraApp" customModuleProvider="target">
             <connections>
+                <outlet property="overlayView" destination="SwS-rt-ncR" id="Xx9-9G-UHP"/>
                 <outlet property="recordView" destination="GRI-tq-ilH" id="DP6-WJ-6TK"/>
                 <outlet property="switchZoomView" destination="oJd-Ca-1EO" id="kGf-qo-spd"/>
                 <outlet property="timerView" destination="Aj4-Jo-czX" id="9N1-e1-Zdb"/>
@@ -36,6 +37,14 @@
                     </view>
                     <blurEffect style="regular"/>
                 </visualEffectView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwS-rt-ncR" userLabel="Overlay View">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="nnE-3i-MEq" appends="YES" id="Ivi-K5-CsL"/>
+                    </connections>
+                </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRI-tq-ilH" customClass="RecordView" customModule="AVFCameraApp" customModuleProvider="target">
                     <rect key="frame" x="167" y="752" width="80" height="80"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -82,9 +91,13 @@
                 <constraint firstItem="Aj4-Jo-czX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BI9-yE-7X0"/>
                 <constraint firstItem="ysI-7G-eU7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EbV-4u-0Tu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bf7-tb-Ew4" secondAttribute="bottom" id="F3J-fb-gu5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SwS-rt-ncR" secondAttribute="bottom" id="NLj-Qu-4br"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CdS-ir-DIo" secondAttribute="trailing" constant="30" placeholder="YES" id="Nox-gW-Ny3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bf7-tb-Ew4" secondAttribute="trailing" id="ZmY-1J-bT8"/>
+                <constraint firstItem="SwS-rt-ncR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Zuh-cq-ueZ"/>
+                <constraint firstItem="SwS-rt-ncR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bcj-Qy-7NP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="GRI-tq-ilH" secondAttribute="bottom" constant="30" placeholder="YES" id="d0H-KF-UTS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SwS-rt-ncR" secondAttribute="trailing" id="gmt-Qd-VQf"/>
                 <constraint firstItem="GRI-tq-ilH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" placeholder="YES" id="hmW-l4-sU8"/>
                 <constraint firstItem="bf7-tb-Ew4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hzH-e5-Iz6"/>
                 <constraint firstItem="ysI-7G-eU7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lXZ-tS-wOC"/>
@@ -96,6 +109,11 @@
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="91.741071428571431"/>
         </view>
+        <tapGestureRecognizer id="nnE-3i-MEq">
+            <connections>
+                <action selector="overlayViewTapHandlerWithTapGestureRecognizer:" destination="-1" id="Owu-u9-vKR"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">

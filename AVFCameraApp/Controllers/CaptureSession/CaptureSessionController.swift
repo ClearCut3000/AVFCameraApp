@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import UIKit
 
 enum CameraType {
   case ultrawide
@@ -80,6 +81,7 @@ class CaptureSessionController: NSObject {
       guard let self = self else { return }
       if let frontCaptureDevice = self.getFrontVideoCaptureDevice() {
         self.initializeCaptureSession(captureDevice: frontCaptureDevice) {
+
         }
       }
     }

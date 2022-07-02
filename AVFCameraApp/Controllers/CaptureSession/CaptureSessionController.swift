@@ -17,6 +17,11 @@ enum CameraType {
 
 typealias CaptureSessionInitializedCompletionHandler = () -> Void
 
+enum CameraPosition {
+  case front
+  case back
+}
+
 class CaptureSessionController: NSObject {
 
   //MARK: - Properties
@@ -24,6 +29,7 @@ class CaptureSessionController: NSObject {
   private var captureDevice: AVCaptureDevice?
   private var zoomState = ZoomState.wide
   private var captureDeviceInput: AVCaptureDeviceInput?
+  private var cameraPosition = CameraPosition.back
 
   //MARK: - Init
   override init() {
@@ -79,10 +85,17 @@ class CaptureSessionController: NSObject {
     }
     DispatchQueue.main.async { [weak self] in
       guard let self = self else { return }
-      if let frontCaptureDevice = self.getFrontVideoCaptureDevice() {
-        self.initializeCaptureSession(captureDevice: frontCaptureDevice) {
-
+      switch self.cameraPosition {
+      case .front:
+        if let backCaptureDevice = self.getBackVideoCaptureDevice() {
+          self.initializeCaptureSession(captureDevice: backCaptureDevice)
         }
+        self.cameraPosition = .back
+      case .back:
+        if let frontCaptureDevice = self.getFrontVideoCaptureDevice() {
+          self.initializeCaptureSession(captureDevice: frontCaptureDevice)
+        }
+        self.cameraPosition = .front
       }
     }
   }

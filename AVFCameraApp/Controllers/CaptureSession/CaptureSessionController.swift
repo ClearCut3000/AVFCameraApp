@@ -17,6 +17,8 @@ enum CameraType {
 
 typealias CaptureSessionInitializedCompletionHandler = () -> Void
 
+typealias CaptureSessionToggleCompletionHandler = (CameraPosition) -> Void
+
 enum CameraPosition {
   case front
   case back
@@ -79,7 +81,7 @@ class CaptureSessionController: NSObject {
     }
   }
 
-  func toggleCamera() {
+  func toggleCamera(completion: CaptureSessionToggleCompletionHandler? = nil) {
     if let captureDeviceInput = captureDeviceInput {
       captureSession.removeInput(captureDeviceInput)
     }
@@ -97,6 +99,7 @@ class CaptureSessionController: NSObject {
         }
         self.cameraPosition = .front
       }
+      completion?(self.cameraPosition)
     }
   }
 

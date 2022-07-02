@@ -16,6 +16,7 @@ class CaptureViewController: UIViewController {
   private lazy var timerController = TimerController()
   private var switchZoomViewWidthConstraint: NSLayoutConstraint?
   private var switchZoomViewHeightConstraint: NSLayoutConstraint?
+  private var shouldHideSwitchZoomView = false
 
   //MARK: - Outlets
   @IBOutlet private weak var videoPreviewView: VideoPreviewView!
@@ -42,20 +43,25 @@ class CaptureViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupVisualEffectView()
-    initializeConstraits()
     setupToggleCameraView()
     setupCaptureSessionController()
     registerForApplicationStateNotifications()
   }
 
-  //MARK: - Methods
-  override var preferredStatusBarStyle: UIStatusBarStyle {
-    return .lightContent
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    initializeConstraits()
+    showInitialViews()
   }
 
   deinit {
     NotificationCenter.default.removeObserver(self, name: .ApplicationDidBecomeActive, object: nil)
     NotificationCenter.default.removeObserver(self, name: .ApplicationWillResignActive, object: nil)
+  }
+
+  //MARK: - Methods
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
   }
 
   private func setupTimer() {
@@ -91,7 +97,8 @@ class CaptureViewController: UIViewController {
         reduceSwitchZoomViewSize()
       }
       if cameraTypes == [.wide] {
-        switchZoomView.alpha = 0
+        switchZoomView.isHidden = true
+        shouldHideSwitchZoomView = true
       }
     }
   }
@@ -139,6 +146,14 @@ class CaptureViewController: UIViewController {
     guard let interfaceOrientation = AppSetup.interfaceOrientation else { return }
     guard let videoOrientation = VideoOrientationController.getVideoOrientation(interfaceOrientation: interfaceOrientation) else { return }
     videoPreviewView.videoPreviewLayer.connection?.videoOrientation = videoOrientation
+  }
+
+  private func showInitialViews() {
+    recordView.isHidden = false
+    if !shouldHideSwitchZoomView {
+      switchZoomView.isHidden = false
+    }
+    toggleCameraView.isHidden = false
   }
 }
 

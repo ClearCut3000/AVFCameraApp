@@ -36,7 +36,7 @@
                     </view>
                     <blurEffect style="regular"/>
                 </visualEffectView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRI-tq-ilH" customClass="RecordView" customModule="AVFCameraApp" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRI-tq-ilH" customClass="RecordView" customModule="AVFCameraApp" customModuleProvider="target">
                     <rect key="frame" x="167" y="752" width="80" height="80"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -57,7 +57,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oJd-Ca-1EO" userLabel="Switch Zoom View" customClass="SwitchZoomView" customModule="AVFCameraApp" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oJd-Ca-1EO" userLabel="Switch Zoom View" customClass="SwitchZoomView" customModule="AVFCameraApp" customModuleProvider="target">
                     <rect key="frame" x="127" y="662" width="160" height="60"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -65,7 +65,7 @@
                         <constraint firstAttribute="height" constant="60" placeholder="YES" id="lug-l2-OWq"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdS-ir-DIo" userLabel="Toggle Camera View" customClass="ToggleCameraView" customModule="AVFCameraApp" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdS-ir-DIo" userLabel="Toggle Camera View" customClass="ToggleCameraView" customModule="AVFCameraApp" customModuleProvider="target">
                     <rect key="frame" x="324" y="762" width="60" height="60"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

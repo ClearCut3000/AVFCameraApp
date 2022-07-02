@@ -32,7 +32,7 @@ class CaptureSessionController: NSObject {
   }
 
   //MARK: - Public Methods
-  func initializeCaptureSession(captureDevice: AVCaptureDevice? = nil, completion: @escaping CaptureSessionInitializedCompletionHandler) {
+  func initializeCaptureSession(captureDevice: AVCaptureDevice? = nil, completion: CaptureSessionInitializedCompletionHandler? = nil) {
     var tempCaptureDevice = self.captureDevice
     if let passedCaptureDevice = captureDevice {
       tempCaptureDevice = passedCaptureDevice
@@ -45,7 +45,7 @@ class CaptureSessionController: NSObject {
     captureSession.addInput(captureDeviceInput)
     captureSession.startRunning()
     setVideoZoomFactor()
-    completion()
+    completion?()
   }
 
   func getCaptureSession() -> AVCaptureSession {

@@ -122,7 +122,7 @@ class CaptureViewController: UIViewController {
   }
 
   private func registerForApplicationStateNotifications() {
-    // When App becomes active
+    // When App become active
     NotificationCenter.default.addObserver(forName: .ApplicationDidBecomeActive,
                                            object: nil,
                                            queue: .main) { [weak self] notification in
@@ -130,6 +130,7 @@ class CaptureViewController: UIViewController {
       UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
         self.visualEffectView.effect = nil
       } completion: { _ in }
+      self.captureSessionController.startRunning()
     }
     // when App goes to inactive state
     NotificationCenter.default.addObserver(forName: .ApplicationWillResignActive,
@@ -140,6 +141,7 @@ class CaptureViewController: UIViewController {
         self.visualEffectView.effect = UIBlurEffect(style: .dark)
       } completion: { _ in }
     }
+    self.captureSessionController.stopRunning()
   }
 
   private func setupVideoOrientation() {

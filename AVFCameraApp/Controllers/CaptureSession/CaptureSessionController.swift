@@ -99,6 +99,14 @@ class CaptureSessionController: NSObject {
       }
     }
   }
+
+  func stopRunning() {
+    captureSession.stopRunning()
+  }
+
+  func startRunning() {
+    captureSession.startRunning()
+  }
 }
 
 //MARK: - Video CaptureDevice Private Extension

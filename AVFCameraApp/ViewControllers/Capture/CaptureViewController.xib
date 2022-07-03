@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CaptureViewController" customModule="AVFCameraApp" customModuleProvider="target">
             <connections>
+                <outlet property="alertView" destination="Hk2-jq-y3k" id="slq-z2-3hP"/>
                 <outlet property="overlayView" destination="SwS-rt-ncR" id="Xx9-9G-UHP"/>
                 <outlet property="recordView" destination="GRI-tq-ilH" id="DP6-WJ-6TK"/>
                 <outlet property="switchZoomView" destination="oJd-Ca-1EO" id="kGf-qo-spd"/>
@@ -66,6 +67,14 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hk2-jq-y3k" userLabel="Alert View" customClass="AlertView" customModule="AVFCameraApp" customModuleProvider="target">
+                    <rect key="frame" x="107" y="572" width="200" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" placeholder="YES" id="30Q-9g-4va"/>
+                        <constraint firstAttribute="width" constant="200" placeholder="YES" id="cAo-3T-D8W"/>
+                    </constraints>
+                </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oJd-Ca-1EO" userLabel="Switch Zoom View" customClass="SwitchZoomView" customModule="AVFCameraApp" customModuleProvider="target">
                     <rect key="frame" x="127" y="662" width="160" height="60"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -86,9 +95,11 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="oJd-Ca-1EO" firstAttribute="top" secondItem="Hk2-jq-y3k" secondAttribute="bottom" constant="30" id="0qJ-CB-qFW"/>
                 <constraint firstItem="GRI-tq-ilH" firstAttribute="top" secondItem="oJd-Ca-1EO" secondAttribute="bottom" constant="30" placeholder="YES" id="2oa-eO-f0v"/>
                 <constraint firstItem="Aj4-Jo-czX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="3Kk-Kd-1S5"/>
                 <constraint firstItem="Aj4-Jo-czX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BI9-yE-7X0"/>
+                <constraint firstItem="Hk2-jq-y3k" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Dg3-9u-lei"/>
                 <constraint firstItem="ysI-7G-eU7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EbV-4u-0Tu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bf7-tb-Ew4" secondAttribute="bottom" id="F3J-fb-gu5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SwS-rt-ncR" secondAttribute="bottom" id="NLj-Qu-4br"/>

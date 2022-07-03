@@ -17,6 +17,7 @@ class CaptureViewController: UIViewController {
   private var switchZoomViewWidthConstraint: NSLayoutConstraint?
   private var switchZoomViewHeightConstraint: NSLayoutConstraint?
   private var shouldHideSwitchZoomView = false
+  private var hideAlertViewWorkItem: DispatchWorkItem?
 
   //MARK: - Outlets
   @IBOutlet private weak var videoPreviewView: VideoPreviewView!
@@ -26,6 +27,7 @@ class CaptureViewController: UIViewController {
   @IBOutlet private weak var toggleCameraView: ToggleCameraView!
   @IBOutlet private weak var visualEffectView: UIVisualEffectView!
   @IBOutlet private weak var overlayView: UIView!
+  @IBOutlet private weak var alertView: AlertView!
 
   //MARK: - Layout
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -60,7 +62,7 @@ class CaptureViewController: UIViewController {
     NotificationCenter.default.removeObserver(self, name: .ApplicationWillResignActive, object: nil)
   }
 
-  //MARK: - Methods
+  //MARK: - Private Controller's Methods
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
   }
@@ -157,6 +159,37 @@ class CaptureViewController: UIViewController {
       switchZoomView.isHidden = false
     }
     toggleCameraView.isHidden = false
+  }
+
+  private func ShowAndHideAlertView(text: String) {
+    showAlertView(text: text)
+    let hideAlertViewWorkItem = DispatchWorkItem { [weak self] in
+      guard let self = self else { return }
+      self.hideAlertView()
+    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: hideAlertViewWorkItem)
+    self.hideAlertViewWorkItem = hideAlertViewWorkItem
+  }
+
+  private func showAlertView(text: String) {
+    hideAlertViewWorkItem?.cancel()
+    hideAlertViewWorkItem = nil
+    alertView.alpha = 0
+    alertView.setAlertText(text: text)
+    alertView.transform = CGAffineTransform(translationX: 0, y: 30)
+    let animation = UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut) {
+      self.alertView.transform = .identity
+      self.alertView.alpha = 1
+    }
+    animation.startAnimation()
+  }
+
+  private func hideAlertView() {
+    let animation = UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut) {
+      self.alertView.transform = CGAffineTransform(translationX: 0, y: 30)
+      self.alertView.alpha = 0
+    }
+    animation.startAnimation()
   }
 
   //MARK: - Action's

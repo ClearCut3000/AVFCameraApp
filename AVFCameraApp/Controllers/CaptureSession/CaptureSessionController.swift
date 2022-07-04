@@ -32,6 +32,7 @@ class CaptureSessionController: NSObject {
   private var zoomState = ZoomState.wide
   private var captureDeviceInput: AVCaptureDeviceInput?
   private var cameraPosition = CameraPosition.back
+  private var previousZoomState = ZoomState.wide
 
   //MARK: - Init
   override init() {
@@ -40,6 +41,7 @@ class CaptureSessionController: NSObject {
   }
 
   //MARK: - Public Methods
+  ///
   func initializeCaptureSession(captureDevice: AVCaptureDevice? = nil, completion: CaptureSessionInitializedCompletionHandler? = nil) {
     var tempCaptureDevice = self.captureDevice
     if let passedCaptureDevice = captureDevice {
@@ -63,15 +65,18 @@ class CaptureSessionController: NSObject {
     completion?()
   }
 
+  /// Returns the capture session
   func getCaptureSession() -> AVCaptureSession {
     return captureSession
   }
 
+  /// Method sets zoom state for CaptureSessionController property
   func setZoomState(zoomState: ZoomState) {
     self.zoomState = zoomState
     setVideoZoomFactor()
   }
 
+  /// Returns an array of available camera types for the current device
   func getCameraTypes() -> [CameraType]? {
     guard let captureDevice = captureDevice else { return nil }
     switch captureDevice.deviceType {
@@ -88,6 +93,7 @@ class CaptureSessionController: NSObject {
     }
   }
 
+  /// This methods used to change camera capture session device from from to back and  back
   func toggleCamera(completion: CaptureSessionToggleCompletionHandler? = nil) {
     if let captureDeviceInput = captureDeviceInput {
       captureSession.removeInput(captureDeviceInput)
@@ -100,7 +106,11 @@ class CaptureSessionController: NSObject {
           self.initializeCaptureSession(captureDevice: backCaptureDevice)
         }
         self.cameraPosition = .back
+        self.zoomState = self.previousZoomState
+        self.setVideoZoomFactor()
       case .back:
+        self.previousZoomState = self.zoomState
+        self.zoomState = .wide
         if let frontCaptureDevice = self.getFrontVideoCaptureDevice() {
           self.initializeCaptureSession(captureDevice: frontCaptureDevice)
         }
@@ -110,14 +120,17 @@ class CaptureSessionController: NSObject {
     }
   }
 
+  /// This method is used to stop the flow of data from the inputs to the outputs connected to the AVCaptureSession instance that is the receiver.
   func stopRunning() {
     captureSession.stopRunning()
   }
 
+  /// This method is used to start the flow of data from the inputs to the outputs connected to the AVCaptureSession instance that is the receiver.
   func startRunning() {
     captureSession.startRunning()
   }
 
+  /// Setting up focus and exposure for point of user's interest
   func setFocus(focusMode: AVCaptureDevice.FocusMode,
                 exposureMode: AVCaptureDevice.ExposureMode,
                 atPoint devicePoint: CGPoint,
@@ -149,10 +162,19 @@ class CaptureSessionController: NSObject {
              atPoint: devicePoint,
              shouldMonitorSubjectAreaChange: false)
   }
+
+  func turnOnTorch() -> Bool {
+    return setTorchMode(torchMode: .on)
+  }
+
+  func turnOffTorch() -> Bool {
+    return setTorchMode(torchMode: .off)
+  }
 }
 
 //MARK: - Video CaptureDevice Private Extension
 private extension CaptureSessionController {
+  /// Returns the available rear video device
   func getBackVideoCaptureDevice() -> AVCaptureDevice? {
     if let tripleCamera = AVCaptureDevice.default(.builtInTripleCamera, for: .video, position: .back) {
       return tripleCamera
@@ -169,6 +191,7 @@ private extension CaptureSessionController {
     return nil
   }
 
+  /// Returns the available front video device
   func getFrontVideoCaptureDevice() -> AVCaptureDevice? {
     if let trueDepthCamera = AVCaptureDevice.default(.builtInTrueDepthCamera, for: .video, position: .front) {
       return trueDepthCamera
@@ -179,6 +202,7 @@ private extension CaptureSessionController {
     return nil
   }
 
+  /// Returns the available video capture device input of type AVCaptureDeviceInput
   func getCaptureDeviceInput(captureDevice: AVCaptureDevice) -> AVCaptureDeviceInput? {
     do {
       let captureDeviceInput = try AVCaptureDeviceInput(device: captureDevice)
@@ -189,6 +213,7 @@ private extension CaptureSessionController {
     return nil
   }
 
+  ///
   func setVideoCaptureDeviceZoom(videoZoomFactor: CGFloat, animated: Bool = false, rate: Float = 0) {
     guard let captureDevice = captureDevice else { return }
     do {
@@ -243,5 +268,18 @@ private extension CaptureSessionController {
   func setVideoZoomFactor() {
     let videoZoomFactor = getVideoZoomFactor()
     setVideoCaptureDeviceZoom(videoZoomFactor: videoZoomFactor)
+  }
+
+  func setTorchMode(torchMode: AVCaptureDevice.TorchMode) -> Bool {
+    guard let captureDevice = captureDevice else { return false }
+    do {
+      try captureDevice.lockForConfiguration()
+    } catch let error as NSError {
+      print("Failet to get lock for configuration on capture device with error - \(error) ")
+    }
+    guard captureDevice.isTorchAvailable else { return false }
+    captureDevice.torchMode = torchMode
+    captureDevice.unlockForConfiguration()
+    return true
   }
 }

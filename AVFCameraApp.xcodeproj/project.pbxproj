@@ -45,6 +45,8 @@
 		366412E9286F81180059C347 /* VideoOrientationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412E8286F81180059C347 /* VideoOrientationController.swift */; };
 		366412EC287228770059C347 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412EB287228770059C347 /* AlertView.swift */; };
 		366412EE287228820059C347 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412ED287228820059C347 /* AlertView.xib */; };
+		366412F128736FE50059C347 /* TorchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412F028736FE40059C347 /* TorchView.swift */; };
+		366412F328736FF40059C347 /* TorchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412F228736FF40059C347 /* TorchView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,8 @@
 		366412E8286F81180059C347 /* VideoOrientationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoOrientationController.swift; sourceTree = "<group>"; };
 		366412EB287228770059C347 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		366412ED287228820059C347 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
+		366412F028736FE40059C347 /* TorchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorchView.swift; sourceTree = "<group>"; };
+		366412F228736FF40059C347 /* TorchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorchView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,7 @@
 		3664129C285E7CC60059C347 /* View's */ = {
 			isa = PBXGroup;
 			children = (
+				366412EF28736FB50059C347 /* Torch */,
 				366412EA2872285A0059C347 /* Alert */,
 				366412E0286E0DB30059C347 /* ToggleCamera */,
 				366412DB286BA5830059C347 /* SwitchZoom */,
@@ -355,6 +360,15 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		366412EF28736FB50059C347 /* Torch */ = {
+			isa = PBXGroup;
+			children = (
+				366412F028736FE40059C347 /* TorchView.swift */,
+				366412F228736FF40059C347 /* TorchView.xib */,
+			);
+			path = Torch;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -418,6 +432,7 @@
 				366412B4286263820059C347 /* RequestPhotoLibraryAuthorizationView.xib in Resources */,
 				3664128E285E7A900059C347 /* LaunchScreen.storyboard in Resources */,
 				366412AC2861154F0059C347 /* RequestMicrophoneAuthorizationView.xib in Resources */,
+				366412F328736FF40059C347 /* TorchView.xib in Resources */,
 				366412D328666CFB0059C347 /* RecordView.xib in Resources */,
 				3664128B285E7A900059C347 /* Assets.xcassets in Resources */,
 				366412C1286274640059C347 /* CaptureViewController.xib in Resources */,
@@ -455,6 +470,7 @@
 				366412C62863A55B0059C347 /* VideoPreviewView.swift in Sources */,
 				366412C0286274640059C347 /* CaptureViewController.swift in Sources */,
 				366412D72868EE960059C347 /* TimerController.swift in Sources */,
+				366412F128736FE50059C347 /* TorchView.swift in Sources */,
 				366412BC28626D9B0059C347 /* RequestPhotoLibraryAuthorizationController.swift in Sources */,
 				3664129A285E7B5B0059C347 /* LaunchViewController.swift in Sources */,
 				366412DA286BA4B30059C347 /* UIColor+Colors.swift in Sources */,

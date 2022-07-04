@@ -28,6 +28,7 @@ class CaptureViewController: UIViewController {
   @IBOutlet private weak var visualEffectView: UIVisualEffectView!
   @IBOutlet private weak var overlayView: UIView!
   @IBOutlet private weak var alertView: AlertView!
+  @IBOutlet private weak var torchView: TorchView!
 
   //MARK: - Layout
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -45,6 +46,7 @@ class CaptureViewController: UIViewController {
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupTorchView()
     setupVisualEffectView()
     setupToggleCameraView()
     setupCaptureSessionController()
@@ -257,6 +259,10 @@ private extension CaptureViewController {
     switchZoomViewWidthConstraint?.constant -= delta
     switchZoomViewHeightConstraint?.constant -= delta
   }
+
+  func setupTorchView() {
+    torchView.delegate = self
+  }
 }
 
 //MARK: - Switched Zoom Protocol
@@ -274,11 +280,33 @@ extension CaptureViewController: ToggleCameraViewDelegate {
       switch cameraPosition {
       case .front:
         self.switchZoomView.isHidden = true
+        self.torchView.isHidden = true
       case .back:
         if !self.shouldHideSwitchZoomView {
           self.switchZoomView.isHidden = false
         }
+        self.torchView.isHidden = false
       }
     })
+  }
+}
+
+//MARK: - Torch Delegate Protocol
+extension CaptureViewController: TorchViewDelegate {
+  func torchTapped(torchMode: TorchMode, completion: (Bool) -> Void ) {
+    switch torchMode {
+    case .off:
+      let result = captureSessionController.turnOnTorch()
+      if !result {
+        ShowAndHideAlertView(text: "Couldn't turn on torch.")
+      }
+      completion(result)
+    case .on:
+      let result = captureSessionController.turnOffTorch()
+      if !result {
+        ShowAndHideAlertView(text: "Couldn't turn off torch.")
+      }
+      completion(result)
+    }
   }
 }

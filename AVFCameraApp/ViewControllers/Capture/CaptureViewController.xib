@@ -16,6 +16,7 @@
                 <outlet property="switchZoomView" destination="oJd-Ca-1EO" id="kGf-qo-spd"/>
                 <outlet property="timerView" destination="Aj4-Jo-czX" id="9N1-e1-Zdb"/>
                 <outlet property="toggleCameraView" destination="CdS-ir-DIo" id="dIl-Ui-D62"/>
+                <outlet property="torchView" destination="4UZ-If-KnQ" id="ctm-rO-lZG"/>
                 <outlet property="videoPreviewView" destination="ysI-7G-eU7" id="TNa-Ww-7cq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="C9i-rJ-Q2i"/>
                 <outlet property="visualEffectView" destination="bf7-tb-Ew4" id="ZKI-Wz-niY"/>
@@ -67,6 +68,14 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4UZ-If-KnQ" userLabel="Torch View" customClass="TorchView" customModule="AVFCameraApp" customModuleProvider="target">
+                    <rect key="frame" x="30" y="74" width="60" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="6ai-jT-Jds"/>
+                        <constraint firstAttribute="height" constant="60" id="iid-gP-Qgd"/>
+                    </constraints>
+                </view>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hk2-jq-y3k" userLabel="Alert View" customClass="AlertView" customModule="AVFCameraApp" customModuleProvider="target">
                     <rect key="frame" x="107" y="572" width="200" height="60"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -104,6 +113,8 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bf7-tb-Ew4" secondAttribute="bottom" id="F3J-fb-gu5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SwS-rt-ncR" secondAttribute="bottom" id="NLj-Qu-4br"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CdS-ir-DIo" secondAttribute="trailing" constant="30" placeholder="YES" id="Nox-gW-Ny3"/>
+                <constraint firstItem="4UZ-If-KnQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="Rcb-sc-4bP"/>
+                <constraint firstItem="4UZ-If-KnQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="VND-Cw-fjj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bf7-tb-Ew4" secondAttribute="trailing" id="ZmY-1J-bT8"/>
                 <constraint firstItem="SwS-rt-ncR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Zuh-cq-ueZ"/>
                 <constraint firstItem="SwS-rt-ncR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bcj-Qy-7NP"/>

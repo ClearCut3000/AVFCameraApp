@@ -116,6 +116,7 @@ class CaptureSessionController: NSObject {
         }
         self.cameraPosition = .front
       }
+      self.resetFocus()
       completion?(self.cameraPosition)
     }
   }
@@ -281,5 +282,13 @@ private extension CaptureSessionController {
     captureDevice.torchMode = torchMode
     captureDevice.unlockForConfiguration()
     return true
+  }
+
+  func resetFocus() {
+    let devicePoint = CGPoint(x: 0.5, y: 0.5)
+    setFocus(focusMode: .continuousAutoFocus,
+             exposureMode: .continuousAutoExposure,
+             atPoint: devicePoint,
+             shouldMonitorSubjectAreaChange: false)
   }
 }

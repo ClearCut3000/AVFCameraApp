@@ -271,6 +271,7 @@ private extension CaptureSessionController {
     setVideoCaptureDeviceZoom(videoZoomFactor: videoZoomFactor)
   }
 
+  // Setting current torch mode
   func setTorchMode(torchMode: AVCaptureDevice.TorchMode) -> Bool {
     guard let captureDevice = captureDevice else { return false }
     do {
@@ -284,6 +285,7 @@ private extension CaptureSessionController {
     return true
   }
 
+  /// Reseting focus and exposure after chnging front/back cameras
   func resetFocus() {
     let devicePoint = CGPoint(x: 0.5, y: 0.5)
     setFocus(focusMode: .continuousAutoFocus,

@@ -18,6 +18,8 @@ class CaptureViewController: UIViewController {
   private var switchZoomViewHeightConstraint: NSLayoutConstraint?
   private var shouldHideSwitchZoomView = false
   private var hideAlertViewWorkItem: DispatchWorkItem?
+  private var pointOfInterestHalfCompletedWorkItem: DispatchWorkItem?
+  private var pointOfInterestCompletedWorkItem: DispatchWorkItem?
 
   //MARK: - Outlets
   @IBOutlet private weak var videoPreviewView: VideoPreviewView!
@@ -29,6 +31,7 @@ class CaptureViewController: UIViewController {
   @IBOutlet private weak var overlayView: UIView!
   @IBOutlet private weak var alertView: AlertView!
   @IBOutlet private weak var torchView: TorchView!
+  @IBOutlet private weak var pointOfInterestView: PointOfInterestView!
 
   //MARK: - Layout
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -194,10 +197,46 @@ class CaptureViewController: UIViewController {
     animation.startAnimation()
   }
 
+  private func setupTorchView() {
+    torchView.delegate = self
+  }
+
+  private func showPointOfInterestViewAtPoint(point: CGPoint) {
+    pointOfInterestHalfCompletedWorkItem = nil
+    pointOfInterestCompletedWorkItem = nil
+    pointOfInterestView.center = point
+    pointOfInterestView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+    let animation = UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut) {
+      self.pointOfInterestView.transform = .identity
+      self.pointOfInterestView.alpha = 1
+    }
+    animation.startAnimation()
+    let pointOfInterestHalfCompletedWorkItem = DispatchWorkItem { [weak self] in
+      guard let self = self else { return }
+      let animation = UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut) {
+        self.pointOfInterestView.alpha = 0.5
+      }
+      animation.startAnimation()
+    }
+    let pointOfInterestCompletedWorkItem = DispatchWorkItem { [weak self] in
+      guard let self = self else { return }
+      let animation = UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut) {
+        self.pointOfInterestView.alpha = 0
+      }
+      animation.startAnimation()
+    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: pointOfInterestHalfCompletedWorkItem)
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: pointOfInterestCompletedWorkItem)
+    self.pointOfInterestHalfCompletedWorkItem = pointOfInterestHalfCompletedWorkItem
+    self.pointOfInterestCompletedWorkItem = pointOfInterestCompletedWorkItem
+  }
+
   //MARK: - Action's
   @IBAction func overlayViewTapHandler(tapGestureRecognizer: UITapGestureRecognizer) {
-    let tapView = tapGestureRecognizer.view
+    guard let tapView = tapGestureRecognizer.view else { return }
     let tapLocation = tapGestureRecognizer.location(in: tapView)
+    let newLocation = tapView.convert(tapLocation, to: view)
+    showPointOfInterestViewAtPoint(point: newLocation)
     let devicePoint = videoPreviewView.videoPreviewLayer.captureDevicePointConverted(fromLayerPoint: tapLocation)
     captureSessionController.setFocus(focusMode: .autoFocus,
                                       exposureMode: .autoExpose,
@@ -258,10 +297,6 @@ private extension CaptureViewController {
     let delta: CGFloat = 50
     switchZoomViewWidthConstraint?.constant -= delta
     switchZoomViewHeightConstraint?.constant -= delta
-  }
-
-  func setupTorchView() {
-    torchView.delegate = self
   }
 }
 

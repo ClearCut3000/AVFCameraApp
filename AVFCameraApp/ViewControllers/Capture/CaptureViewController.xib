@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="alertView" destination="Hk2-jq-y3k" id="slq-z2-3hP"/>
                 <outlet property="overlayView" destination="SwS-rt-ncR" id="Xx9-9G-UHP"/>
+                <outlet property="pointOfInterestView" destination="yfD-mu-5PZ" id="ddD-Ra-K3a"/>
                 <outlet property="recordView" destination="GRI-tq-ilH" id="DP6-WJ-6TK"/>
                 <outlet property="switchZoomView" destination="oJd-Ca-1EO" id="kGf-qo-spd"/>
                 <outlet property="timerView" destination="Aj4-Jo-czX" id="9N1-e1-Zdb"/>
@@ -100,6 +101,14 @@
                         <constraint firstAttribute="height" constant="60" id="jbo-iL-Gl7"/>
                     </constraints>
                 </view>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfD-mu-5PZ" userLabel="Point Of Interest View" customClass="PointOfInterestView" customModule="AVFCameraApp" customModuleProvider="target">
+                    <rect key="frame" x="167" y="408" width="80" height="80"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="5P4-Y2-Ixp"/>
+                        <constraint firstAttribute="height" constant="80" id="BYy-AX-MW2"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -115,10 +124,12 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CdS-ir-DIo" secondAttribute="trailing" constant="30" placeholder="YES" id="Nox-gW-Ny3"/>
                 <constraint firstItem="4UZ-If-KnQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="Rcb-sc-4bP"/>
                 <constraint firstItem="4UZ-If-KnQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="VND-Cw-fjj"/>
+                <constraint firstItem="yfD-mu-5PZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" placeholder="YES" id="Y5X-Mf-iNJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bf7-tb-Ew4" secondAttribute="trailing" id="ZmY-1J-bT8"/>
                 <constraint firstItem="SwS-rt-ncR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Zuh-cq-ueZ"/>
                 <constraint firstItem="SwS-rt-ncR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bcj-Qy-7NP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="GRI-tq-ilH" secondAttribute="bottom" constant="30" placeholder="YES" id="d0H-KF-UTS"/>
+                <constraint firstItem="yfD-mu-5PZ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" placeholder="YES" id="d7S-HO-fKN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SwS-rt-ncR" secondAttribute="trailing" id="gmt-Qd-VQf"/>
                 <constraint firstItem="GRI-tq-ilH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" placeholder="YES" id="hmW-l4-sU8"/>
                 <constraint firstItem="bf7-tb-Ew4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hzH-e5-Iz6"/>

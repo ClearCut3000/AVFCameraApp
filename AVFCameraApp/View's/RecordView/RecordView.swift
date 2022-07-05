@@ -12,10 +12,16 @@ enum RecordViewState {
   case recording
 }
 
+protocol RecordViewDelegate: AnyObject {
+  func recordViewStartRecording(recordView: RecordView)
+  func recordViewEndRecording(recordView: RecordView)
+}
+
 class RecordView: UIView {
 
   //MARK: - Properties
   private var state = RecordViewState.stopped
+  weak var delegate: RecordViewDelegate?
 
   //MARK: - Outlet's
   @IBOutlet private weak var contentView: UIView!
@@ -51,9 +57,11 @@ class RecordView: UIView {
     case .stopped:
       state = .recording
       animateForRecording()
+      delegate?.recordViewStartRecording(recordView: self)
     case .recording:
       state = .stopped
       animateForStoped()
+      delegate?.recordViewEndRecording(recordView: self)
     }
   }
 }

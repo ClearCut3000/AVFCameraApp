@@ -22,14 +22,18 @@ class AppSetup {
 
   /// Static instance for finding main window scene
   static var keyWindow: UIWindow? {
-    return UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }.first { $0.isKeyWindow }
+    if #available(iOS 15.0, *) {
+      return UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }.first { $0.isKeyWindow }
+    } else {
+      return UIApplication.shared.windows.first { $0.isKeyWindow }
+    }
   }
 
   /// Static computed property that returns current interface orientation
   static var interfaceOrientation: UIInterfaceOrientation? {
     if #available(iOS 15.0, *) {
-      guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return nil }
-      return windowScene.interfaceOrientation
+      let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+      return windowScene?.interfaceOrientation
     } else {
       return UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
     }

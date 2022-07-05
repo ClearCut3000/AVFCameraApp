@@ -82,7 +82,9 @@ class CaptureViewController: UIViewController {
 
   private func hideViewsBeforeOrientationChange() {
     recordView.alpha = 0
+    toggleCameraView.alpha = 0
     switchZoomView.alpha = 0
+    hidePointOfInterestView()
   }
 
   private func showViewsAfterOrientationChange() {
@@ -231,6 +233,14 @@ class CaptureViewController: UIViewController {
     self.pointOfInterestCompletedWorkItem = pointOfInterestCompletedWorkItem
   }
 
+  private func hidePointOfInterestView() {
+    pointOfInterestCompletedWorkItem?.cancel()
+    pointOfInterestHalfCompletedWorkItem?.cancel()
+    pointOfInterestCompletedWorkItem = nil
+    pointOfInterestHalfCompletedWorkItem = nil
+    pointOfInterestView.alpha = 0
+  }
+
   //MARK: - Action's
   @IBAction func overlayViewTapHandler(tapGestureRecognizer: UITapGestureRecognizer) {
     guard let tapView = tapGestureRecognizer.view else { return }
@@ -303,6 +313,7 @@ private extension CaptureViewController {
 //MARK: - Switched Zoom Protocol
 extension CaptureViewController: SwitchZoomViewDelegate {
   func switchZoomTapped(state: ZoomState) {
+    hidePointOfInterestView()
     captureSessionController.setZoomState(zoomState: state)
   }
 }
@@ -310,6 +321,7 @@ extension CaptureViewController: SwitchZoomViewDelegate {
 //MARK: - Toggle Camera Button Protocol
 extension CaptureViewController: ToggleCameraViewDelegate {
   func toggleCameraTapped() {
+    hidePointOfInterestView()
     captureSessionController.toggleCamera(completion: { [weak self] cameraPosition in
       guard let self = self else { return }
       switch cameraPosition {

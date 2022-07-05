@@ -33,6 +33,7 @@ class CaptureSessionController: NSObject {
   private var captureDeviceInput: AVCaptureDeviceInput?
   private var cameraPosition = CameraPosition.back
   private var previousZoomState = ZoomState.wide
+  private var movieFileOutput: AVCaptureMovieFileOutput?
 
   //MARK: - Init
   override init() {
@@ -41,7 +42,7 @@ class CaptureSessionController: NSObject {
   }
 
   //MARK: - Public Methods
-  ///
+  /// Public method of captureSessionController for configuring current capture session with capture device
   func initializeCaptureSession(captureDevice: AVCaptureDevice? = nil, completion: CaptureSessionInitializedCompletionHandler? = nil) {
     var tempCaptureDevice = self.captureDevice
     if let passedCaptureDevice = captureDevice {
@@ -60,6 +61,19 @@ class CaptureSessionController: NSObject {
                                            name: .AVCaptureDeviceSubjectAreaDidChange,
                                            object: captureDevice)
     captureSession.addInput(captureDeviceInput)
+
+    let movieFileOutput = AVCaptureMovieFileOutput()
+    guard captureSession.canAddOutput(movieFileOutput) else { return }
+    captureSession.beginConfiguration()
+    captureSession.addOutput(movieFileOutput)
+    captureSession.sessionPreset = .high
+    if let connection = movieFileOutput.connection(with: .video),
+           connection.isVideoStabilizationSupported {
+      connection.preferredVideoStabilizationMode = .auto
+    }
+    captureSession.commitConfiguration()
+    self.movieFileOutput = movieFileOutput
+
     captureSession.startRunning()
     setVideoZoomFactor()
     completion?()
@@ -170,6 +184,28 @@ class CaptureSessionController: NSObject {
 
   func turnOffTorch() -> Bool {
     return setTorchMode(torchMode: .off)
+  }
+
+  func startRecording() {
+    guard let movieFileOutput = movieFileOutput else { return }
+    guard let interfaceOrientation = AppSetup.interfaceOrientation else { return }
+    guard let videoOrientation = VideoOrientationController.getVideoOrientation(interfaceOrientation: interfaceOrientation) else { return }
+    let movieFileOutputConnection = movieFileOutput.connection(with: .video)
+    movieFileOutputConnection?.videoOrientation = videoOrientation
+    let availableVideoCodecTypes = movieFileOutput.availableVideoCodecTypes
+    if availableVideoCodecTypes.contains(.hevc) {
+      movieFileOutput.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.hevc], for: movieFileOutputConnection!)
+    }
+
+    let outputFileName = UUID().uuidString
+    let outputFilePath = (NSTemporaryDirectory() as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
+    let outputURL = URL(fileURLWithPath: outputFilePath)
+    movieFileOutput.startRecording(to: outputURL, recordingDelegate: self)
+  }
+
+  func stopRecording() {
+    guard let movieFileOutput = movieFileOutput else { return }
+    movieFileOutput.stopRecording()
   }
 }
 

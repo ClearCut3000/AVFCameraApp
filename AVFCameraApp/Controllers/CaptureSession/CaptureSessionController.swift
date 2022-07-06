@@ -24,9 +24,18 @@ enum CameraPosition {
   case back
 }
 
+protocol CaptureSessionControllerDelegate: AnyObject {
+  func captureSessionControllerFinisherRecording(captureSessionController: CaptureSessionController, outputFileURL: URL)
+  func captureSessionControllerFailedFinishingRecording(captureSessionController: CaptureSessionController)
+}
+
 class CaptureSessionController: NSObject {
 
   //MARK: - Properties
+  var isRecording: Bool {
+    guard let movieFileOutput = movieFileOutput else { return false }
+    return movieFileOutput.isRecording
+  }
   private lazy var captureSession = AVCaptureSession()
   private var captureDevice: AVCaptureDevice?
   private var zoomState = ZoomState.wide
@@ -34,6 +43,7 @@ class CaptureSessionController: NSObject {
   private var cameraPosition = CameraPosition.back
   private var previousZoomState = ZoomState.wide
   private var movieFileOutput: AVCaptureMovieFileOutput?
+  weak var delegate: CaptureSessionControllerDelegate?
 
   //MARK: - Init
   override init() {
@@ -207,6 +217,17 @@ class CaptureSessionController: NSObject {
     guard let movieFileOutput = movieFileOutput else { return }
     movieFileOutput.stopRecording()
   }
+
+  func cleanUp(outputFileURL: URL) {
+    let path = outputFileURL.path
+    guard FileManager.default.fileExists(atPath: path) else { return }
+    do {
+      try FileManager.default.removeItem(atPath: path)
+    } catch {
+      print("Failed to remove file at url - \(outputFileURL)")
+    }
+  }
+
 }
 
 //MARK: - Video CaptureDevice Private Extension
@@ -328,5 +349,23 @@ private extension CaptureSessionController {
              exposureMode: .continuousAutoExposure,
              atPoint: devicePoint,
              shouldMonitorSubjectAreaChange: false)
+  }
+}
+
+extension CaptureSessionController: AVCaptureFileOutputRecordingDelegate {
+  func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+    var success = true
+
+    // If there some error accured while finishing recording a file, method gonna pass bool value of specific userInfo error-key to success variable
+    if let error = error as? NSError {
+      success = (error.userInfo[AVErrorRecordingSuccessfullyFinishedKey] as AnyObject).boolValue
+    }
+
+    if success {
+      delegate?.captureSessionControllerFinisherRecording(captureSessionController: self, outputFileURL: outputFileURL)
+    } else {
+      delegate?.captureSessionControllerFailedFinishingRecording(captureSessionController: self)
+      cleanUp(outputFileURL: outputFileURL)
+    }
   }
 }

@@ -49,6 +49,7 @@
 		366412F328736FF40059C347 /* TorchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412F228736FF40059C347 /* TorchView.xib */; };
 		366412F62873819E0059C347 /* PointOfInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412F52873819E0059C347 /* PointOfInterestView.swift */; };
 		366412F8287381A70059C347 /* PointOfInterestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366412F7287381A70059C347 /* PointOfInterestView.xib */; };
+		366412FB2875ACBA0059C347 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366412FA2875ACBA0059C347 /* VideoPlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		366412F228736FF40059C347 /* TorchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorchView.xib; sourceTree = "<group>"; };
 		366412F52873819E0059C347 /* PointOfInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterestView.swift; sourceTree = "<group>"; };
 		366412F7287381A70059C347 /* PointOfInterestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointOfInterestView.xib; sourceTree = "<group>"; };
+		366412FA2875ACBA0059C347 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		36641295285E7B090059C347 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				366412F92875AC3E0059C347 /* VideoPlayer */,
 				366412BD286274350059C347 /* Capture */,
 				36641297285E7B2B0059C347 /* Launch */,
 				36641296285E7B210059C347 /* ViewController */,
@@ -383,6 +386,14 @@
 			path = PointOfInterest;
 			sourceTree = "<group>";
 		};
+		366412F92875AC3E0059C347 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				366412FA2875ACBA0059C347 /* VideoPlayerViewController.swift */,
+			);
+			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -483,6 +494,7 @@
 				366412C3286274B10059C347 /* AppSetup.swift in Sources */,
 				366412A7285E86F90059C347 /* RequestCameraAuthorizationController.swift in Sources */,
 				366412C62863A55B0059C347 /* VideoPreviewView.swift in Sources */,
+				366412FB2875ACBA0059C347 /* VideoPlayerViewController.swift in Sources */,
 				366412C0286274640059C347 /* CaptureViewController.swift in Sources */,
 				366412D72868EE960059C347 /* TimerController.swift in Sources */,
 				366412F128736FE50059C347 /* TorchView.swift in Sources */,

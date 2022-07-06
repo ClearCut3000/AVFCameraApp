@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVKit
 
 class CaptureViewController: UIViewController {
 
@@ -20,6 +21,7 @@ class CaptureViewController: UIViewController {
   private var hideAlertViewWorkItem: DispatchWorkItem?
   private var pointOfInterestHalfCompletedWorkItem: DispatchWorkItem?
   private var pointOfInterestCompletedWorkItem: DispatchWorkItem?
+  private var movieOutputFileURL: URL?
 
   //MARK: - Outlets
   @IBOutlet private weak var videoPreviewView: VideoPreviewView!
@@ -46,9 +48,14 @@ class CaptureViewController: UIViewController {
     }
   }
 
+  override var shouldAutorotate: Bool {
+    return !captureSessionController.isRecording
+  }
+
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupRecordView()
     setupTorchView()
     setupVisualEffectView()
     setupToggleCameraView()
@@ -114,6 +121,7 @@ class CaptureViewController: UIViewController {
   }
 
   private func setupCaptureSessionController() {
+    captureSessionController.delegate = self
     captureSessionController.initializeCaptureSession(completion: { [weak self] in
       guard let self = self else { return }
       self.videoPreviewView.videoPreviewLayer.session = self.captureSessionController.getCaptureSession()
@@ -241,6 +249,22 @@ class CaptureViewController: UIViewController {
     pointOfInterestView.alpha = 0
   }
 
+  private func showTimerView() {
+    timerView.isHidden = false
+  }
+
+  private func hideTimerView() {
+    timerView.isHidden = true
+  }
+
+  private func resetTimer() {
+    timerController.resetTimer()
+  }
+
+  private func setupRecordView() {
+    recordView.delegate = self
+  }
+
   //MARK: - Action's
   @IBAction func overlayViewTapHandler(tapGestureRecognizer: UITapGestureRecognizer) {
     guard let tapView = tapGestureRecognizer.view else { return }
@@ -338,7 +362,7 @@ extension CaptureViewController: ToggleCameraViewDelegate {
   }
 }
 
-//MARK: - Torch Delegate Protocol
+//MARK: - Torch Protocol Delegate
 extension CaptureViewController: TorchViewDelegate {
   func torchTapped(torchMode: TorchMode, completion: (Bool) -> Void ) {
     switch torchMode {
@@ -356,4 +380,47 @@ extension CaptureViewController: TorchViewDelegate {
       completion(result)
     }
   }
+}
+
+//MARK: - Recording Protocol Delegate
+extension CaptureViewController: RecordViewDelegate {
+  func recordViewStartRecording(recordView: RecordView) {
+    showTimerView()
+    setupTimer()
+    captureSessionController.startRecording()
+  }
+
+  func recordViewEndRecording(recordView: RecordView) {
+    hideTimerView()
+    resetTimer()
+    captureSessionController.stopRecording()
+  }
+}
+
+//MARK: - Capture Session Protocol Delegate
+extension CaptureViewController: CaptureSessionControllerDelegate {
+  func captureSessionControllerFinisherRecording(captureSessionController: CaptureSessionController, outputFileURL: URL) {
+    movieOutputFileURL = outputFileURL
+    let player = AVPlayer(url: outputFileURL)
+    let videoPlayerViewController = VideoPlayerViewController()
+    videoPlayerViewController.player = player
+    videoPlayerViewController.videoPlayerViewControllerDelegate = self
+    present(videoPlayerViewController, animated: true) {
+      player.play()
+    }
+  }
+
+  func captureSessionControllerFailedFinishingRecording(captureSessionController: CaptureSessionController) {
+    print("Failet to finish recording.")
+  }
+}
+
+//MARK: - Video Player Protocol Delegate
+extension CaptureViewController: VideoPlayerViewControllerdelegate {
+  func videoPlayerViewControllerDismissed(videoPlayerViewController: VideoPlayerViewController) {
+    guard let movieOutputFileURL = movieOutputFileURL else { return }
+    captureSessionController.cleanUp(outputFileURL: movieOutputFileURL)
+  }
+
+
 }

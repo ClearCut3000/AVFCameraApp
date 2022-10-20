@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,8 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordView" customModule="AVFCameraApp" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicatorView" destination="Wpx-P3-0nE" id="Vxe-lj-Vy0"/>
+                <outlet property="containerView" destination="6rt-1X-PnG" id="NK6-X7-F9p"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="YUT-xX-dld"/>
-                <outlet property="continerView" destination="6rt-1X-PnG" id="q11-eF-emo"/>
                 <outlet property="ringView" destination="4Sj-eN-BWM" id="pdF-e5-Z3I"/>
                 <outlet property="stopView" destination="A8d-pK-oRZ" id="g4D-kv-K8S"/>
             </connections>

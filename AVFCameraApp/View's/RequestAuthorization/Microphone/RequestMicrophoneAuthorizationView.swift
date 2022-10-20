@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RequestMicrophoneAuthorizationViewDelegate: AnyObject {
-  func requestCameraAuthorizationTapped()
+  func requestMicrophoneAuthorizationTapped()
 }
 
 class RequestMicrophoneAuthorizationView: UIView {
@@ -74,7 +74,7 @@ class RequestMicrophoneAuthorizationView: UIView {
 
   //MARK: - Action's
   @IBAction func actionButtonHandler(button: UIButton) {
-    delegate?.requestCameraAuthorizationTapped()
+    delegate?.requestMicrophoneAuthorizationTapped()
   }
 }
 
